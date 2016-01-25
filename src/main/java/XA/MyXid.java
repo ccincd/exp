@@ -26,17 +26,14 @@ public class MyXid implements Xid {
     public MyXid() {
     }
 
-    @Override
     public int getFormatId() {
         return formatId;
     }
 
-    @Override
     public byte[] getGlobalTransactionId() {
         return gtrid;
     }
 
-    @Override
     public byte[] getBranchQualifier() {
         return bqual;
     }

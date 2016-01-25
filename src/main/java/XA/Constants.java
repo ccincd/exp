@@ -19,7 +19,7 @@ public class Constants {
 
     public static final String MYSQL_LOCAL_HOMEWORK_URL = MYSQL_LOCAL_BASE + HOMEWORK_DB_NAME;
 
-    public static final String MYSQL_USERNAME = "cc";
+    public static final String MYSQL_USERNAME = "root";
 
     public static final String MYSQL_PASSWORD = "chenchi";
 }
