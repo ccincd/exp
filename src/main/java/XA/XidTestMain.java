@@ -46,6 +46,7 @@ public class XidTestMain {
             tc2.getStatement().executeUpdate("insert into user_accounts(username, pwd) values('cc', 'chenchi')");
             tc2.getXaResource().end(myXid2, XAResource.TMSUCCESS);
 
+            /* 询问资源管理器是否可以提交 */
             retCode1 = tc1.getXaResource().prepare(myXid1);
             retCode2 = tc2.getXaResource().prepare(myXid2);
             if (retCode1 == XAResource.XA_OK && retCode2 == XAResource.XA_OK) {
