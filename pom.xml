@@ -59,9 +59,9 @@
       </dependency>
 
       <dependency>
-          <groupId>net.sf.jxls</groupId>
-          <artifactId>jxls-reader</artifactId>
-          <version>1.0.6</version>
+          <groupId>joda-time</groupId>
+          <artifactId>joda-time</artifactId>
+          <version>2.9.1</version>
       </dependency>
   </dependencies>
   <build>
