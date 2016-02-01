@@ -1,7 +1,7 @@
 package aspect;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,8 +14,45 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class AspectPoint {
-    @Before("execution(public * aspect.AspectMain.*(..))")
+
+    @Pointcut("execution(public * aspect.AspectMain.*(..))")
     public void doIt() {
-        System.out.println("do it!");
+    }
+
+    @Before("doIt()")
+    public void before() {
+        System.out.println("before");
+    }
+
+    @After("doIt()")
+    public void after() {
+        System.out.println("after");
+    }
+
+    @AfterThrowing("doIt()")
+    public void afterThrowing() {
+        System.out.println("after throwing");
+    }
+
+    @AfterReturning("doIt()")
+    public void afterReturning() {
+        System.out.println("after returning");
+    }
+
+    @Around("doIt()")
+    public Object around(ProceedingJoinPoint joinPoint) {
+        Object result;
+        String methodName = joinPoint.getSignature().getName();
+
+        try {
+            System.out.println("Method name: " + methodName);
+            System.out.println("before proceed");
+            result = joinPoint.proceed();
+            System.out.println("after proceed");
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+
+        return result;
     }
 }

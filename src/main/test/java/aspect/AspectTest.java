@@ -21,7 +21,11 @@ public class AspectTest extends BaseTest {
     @Test
     public void testAspect() {
         aspectMain.helloWorld();
-        aspectMain.sayHi();
+        try {
+            aspectMain.sayHi();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         aspectMain.sayHello();
     }
 }

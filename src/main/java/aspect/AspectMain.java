@@ -14,6 +14,7 @@ public class AspectMain {
 
     public void sayHi() {
         System.out.println("Hi, there");
+        throw new RuntimeException("Exception");
     }
 
     public void sayHello() {
