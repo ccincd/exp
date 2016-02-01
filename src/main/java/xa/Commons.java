@@ -1,8 +1,8 @@
-package XA;
-
-import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
+package xa;
 
 import javax.sql.XADataSource;
+
+import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 
 /**
  * Commons

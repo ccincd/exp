@@ -1,4 +1,4 @@
-package XA;
+package xa;
 
 import javax.transaction.xa.Xid;
 

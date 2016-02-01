@@ -1,11 +1,12 @@
-package XA;
+package xa;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.sql.XAConnection;
 import javax.sql.XADataSource;
 import javax.transaction.xa.XAResource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * TransactionContext
