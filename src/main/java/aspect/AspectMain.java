@@ -1,5 +1,7 @@
 package aspect;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,8 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectMain {
 
+    Logger logger = LoggerFactory.getLogger(AspectMain.class);
+
     public void sayHi() {
         System.out.println("Hi, there");
+        logger.info("log info...");
         throw new RuntimeException("Exception");
     }
 

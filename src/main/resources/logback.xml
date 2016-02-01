@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!--<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">-->
+    <!--<resetJUL>true</resetJUL>-->
+    <!--</contextListener>-->
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss} %5p %c:%L] %X{REQUEST_UNIQUE_ID} - %X{REQUEST_USER_ID}
+                QTraceId[%X{qtraceid}] %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${qunar.logs}/scm-ct.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss} %5p %c:%L] %X{REQUEST_UNIQUE_ID} - %X{REQUEST_USER_ID}
+                QTraceId[%X{qtraceid}] %m%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="debug"/>
+    <logger name="org.springframework.beans" level="info"/>
+    <logger name="com.qunar.scm.permission.api.login.filter" level="debug"/>
+    <logger name="com.qunar.db.util.DbLogger" level="warn"/>
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+
+
+</configuration>
