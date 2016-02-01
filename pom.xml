@@ -9,7 +9,7 @@
   <url>http://maven.apache.org</url>
 
     <properties>
-        <spring.framework.version>3.2.1.RELEASE</spring.framework.version>
+        <spring.framework.version>4.2.4.RELEASE</spring.framework.version>
         <junit.version>4.11</junit.version>
         <mysql.connector.version>5.1.38</mysql.connector.version>
         <guava.google.version>18.0</guava.google.version>
