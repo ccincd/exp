@@ -12,7 +12,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="aspect"/>
+    <context:component-scan base-package="aspect, anno"/>
 
     <context:property-placeholder location="classpath:config/*.properties"/>
 
