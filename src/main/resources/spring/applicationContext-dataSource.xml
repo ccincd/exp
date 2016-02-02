@@ -25,7 +25,7 @@
     </bean>
 
     <!-- Druid 数据源 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <property name="name" value="toy"/>
         <property name="url" value="${druid.url}"/>
