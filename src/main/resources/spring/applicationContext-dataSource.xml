@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- DBCP 数据源 -->
+    <bean id="dbcpDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="${dbcp.url}"/>
+        <property name="username" value="${dbcp.user}"/>
+        <property name="password" value="${dbcp.pwd}"/>
+    </bean>
+
+    <!-- C3P0 数据源 -->
+    <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="${c3p0.url}"/>
+        <property name="user" value="${c3p0.user}"/>
+        <property name="password" value="${c3p0.pwd}"/>
+    </bean>
+
+    <!-- Druid 数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="name" value="toy"/>
+        <property name="url" value="${druid.url}"/>
+        <property name="username" value="${druid.user}"/>
+        <property name="password" value="${druid.pwd}"/>
+        <property name="initialSize" value="${druid.initialPoolSize}"/>
+        <property name="minIdle" value="${druid.minPoolSize}"/>
+        <property name="maxActive" value="${druid.maxPoolSize}"/>
+        <property name="validationQuery" value="select count(1)"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+    </bean>
+
+    <!-- 事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="${data.source}"/>
+    </bean>
+
+    <!-- 开启事务配置 -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+    <!-- MyBatis SqlSessionFactory -->
+    <bean id="sqlSessionFactory" name="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="${data.source}"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mapper/*.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- MyBatis MapperScannerConfigurer -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="web.toy.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
 
 </beans>

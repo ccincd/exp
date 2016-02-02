@@ -21,9 +21,49 @@
         <joda.time.version>2.9.1</joda.time.version>
         <ch.qos.logback.version>1.1.3</ch.qos.logback.version>
         <org.slf4j.version>1.7.14</org.slf4j.version>
+        <commons.dbcp.version>1.4</commons.dbcp.version>
+        <c3p0.version>0.9.1.2</c3p0.version>
+        <druid.alibaba.version>0.2.9</druid.alibaba.version>
+        <mybatis.version>3.3.0</mybatis.version>
+        <mybatis.spring.version>1.2.3</mybatis.spring.version>
     </properties>
 
     <dependencies>
+
+        <!-- data sources start -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons.dbcp.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${c3p0.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.druid</groupId>
+            <artifactId>druid-wrapper</artifactId>
+            <version>${druid.alibaba.version}</version>
+        </dependency>
+        <!-- data sources end -->
+
+        <!-- mybatis start -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis.spring.version}</version>
+        </dependency>
+        <!-- mybatis end -->
+
         <!-- spring framework start-->
         <dependency>
             <groupId>org.springframework</groupId>
