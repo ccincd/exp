@@ -3,6 +3,7 @@ package cache;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import net.rubyeye.xmemcached.CASOperation;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.MemcachedClientBuilder;
 import net.rubyeye.xmemcached.XMemcachedClientBuilder;
@@ -28,7 +29,32 @@ public class MemcacheTest {
             cacheClient = cacheBuilder.build();
 
             cacheClient.set("hello", 0, "hi, there");
+            System.out.println(cacheClient.set("hello", 0, "set"));
+            System.out.println(cacheClient.add("hello", 0, "add"));
             System.out.println("hello=" + cacheClient.get("hello"));
+
+            /*
+             * GetsResponse<String> response = cacheClient.gets("hello"); long cas = response.getCas();
+             */
+            /**
+             * Cas is a check and set operation which means "store this data but only if no one else has updated since I
+             * last fetched it."
+             */
+            /*
+             * if (!cacheClient.cas("hello", 0, "Happy!", cas)) { System.out.println("cas error"); }
+             */
+            cacheClient.cas("hello", 0, new CASOperation<String>() {
+                @Override
+                public int getMaxTries() {
+                    return Integer.MAX_VALUE;
+                }
+
+                @Override
+                public String getNewValue(long currentCAS, String currentValue) {
+                    return "Happy!";
+                }
+            });
+
             cacheClient.delete("hello");
             System.out.println("hello=" + cacheClient.get("hello"));
         } catch (IOException e) {
