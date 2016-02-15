@@ -48,21 +48,22 @@
     <!-- 开启事务配置 -->
     <tx:annotation-driven transaction-manager="txManager"/>
 
-    <!-- MyBatis SqlSessionFactory -->
-    <bean id="sqlSessionFactory" name="sqlSessionFactory"
+    <!-- MyBatis MySQL SqlSessionFactory -->
+    <bean id="mySqlSqlSessionFactory" name="mySqlSqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="${data.source}"/>
         <property name="mapperLocations">
             <list>
-                <value>classpath:mapper/*.xml</value>
+                <value>classpath:mapper/mySql/*.xml</value>
             </list>
         </property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
-    <!-- MyBatis MapperScannerConfigurer -->
+    <!-- MyBatis MySQL MapperScannerConfigurer -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="web.toy.dao, test.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="test.mySql.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="mySqlSqlSessionFactory"/>
     </bean>
 
 </beans>

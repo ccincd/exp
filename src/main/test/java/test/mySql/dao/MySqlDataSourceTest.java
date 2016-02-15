@@ -1,4 +1,4 @@
-package test.dao;
+package test.mySql.dao;
 
 import javax.annotation.Resource;
 
@@ -14,10 +14,10 @@ import common.TxRollBackBaseTest;
  * @date 16-2-2
  * @time 下午3:25
  */
-public class DataSourceTest extends TxRollBackBaseTest {
+public class MySqlDataSourceTest extends TxRollBackBaseTest {
 
     @Resource
-    TestDataSourceDao dataSourceDao;
+    TestMySqlDataSourceDao dataSourceDao;
 
     @Test
     public void testDataSource() {

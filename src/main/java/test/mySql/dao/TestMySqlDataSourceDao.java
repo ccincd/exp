@@ -1,4 +1,4 @@
-package test.dao;
+package test.mySql.dao;
 
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @time 下午3:00
  */
 @Repository
-public interface TestDataSourceDao {
+public interface TestMySqlDataSourceDao {
 
     /**
      * 测试dataSource连接

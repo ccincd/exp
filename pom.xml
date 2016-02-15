@@ -26,6 +26,10 @@
         <druid.alibaba.version>0.2.9</druid.alibaba.version>
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
+        <tomcat.jdbc.version>8.0.9</tomcat.jdbc.version>
+        <crate.client.version>0.49.2</crate.client.version>
+        <crate.jdbc.version>1.7.0</crate.jdbc.version>
+        <crate.api.version>1.0.3</crate.api.version>
     </properties>
 
     <dependencies>
@@ -164,12 +168,35 @@
             <version>${junit.version}</version>
         </dependency>
 
+        <!-- jdbc & connector start -->
         <dependency>
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat.jdbc.version}</version>
+        </dependency>
+        <!-- jdbc & connector end -->
+
+        <!-- crate config start -->
+        <dependency>
+            <groupId>io.crate</groupId>
+            <artifactId>crate-client</artifactId>
+            <version>${crate.client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.crate</groupId>
+            <artifactId>crate-jdbc</artifactId>
+            <version>${crate.jdbc.version}</version>
+        </dependency>
+        <!-- crate config end -->
+
+        <!-- google utils start -->
         <dependency>
           <groupId>com.google.guava</groupId>
           <artifactId>guava-tests</artifactId>
@@ -178,34 +205,39 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>${collections.google.version}</version>
+        </dependency>
+        <!-- google utils end -->
+
+        <!-- json start -->
+        <dependency>
           <groupId>org.codehaus.jackson</groupId>
           <artifactId>jackson-mapper-asl</artifactId>
             <version>${jackson.mapper.asl.version}</version>
         </dependency>
 
         <dependency>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.alibaba.version}</version>
+        </dependency>
+        <!-- json end -->
+
+        <!-- apache commons start -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
             <version>${apache.commons.lang3.version}</version>
         </dependency>
 
         <dependency>
-          <groupId>com.alibaba</groupId>
-          <artifactId>fastjson</artifactId>
-            <version>${fastjson.alibaba.version}</version>
-        </dependency>
-
-        <dependency>
-          <groupId>com.google.collections</groupId>
-          <artifactId>google-collections</artifactId>
-            <version>${collections.google.version}</version>
-        </dependency>
-
-        <dependency>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-io</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
             <version>${apache.commons.io.version}</version>
         </dependency>
+        <!-- apache commons end -->
 
         <dependency>
           <groupId>joda-time</groupId>
