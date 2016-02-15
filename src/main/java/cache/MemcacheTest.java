@@ -19,6 +19,11 @@ import net.rubyeye.xmemcached.utils.AddrUtil;
  */
 public class MemcacheTest {
 
+    /**
+     * {@link cache.TestEnum}
+     */
+    private int welcome;
+
     public static void main(String[] args) {
         MemcachedClientBuilder cacheBuilder = new XMemcachedClientBuilder(AddrUtil.getAddresses("localhost:11211"),
                 new int[] { 1 });
@@ -74,5 +79,26 @@ public class MemcacheTest {
                 }
             }
         }
+    }
+
+    /**
+     * @see #hi()
+     *
+     * @param str
+     */
+    public void hi(String str) {
+        System.out.println(str);
+    }
+
+    public void hi() {
+        System.out.println("hi");
+    }
+
+    public int getWelcome() {
+        return welcome;
+    }
+
+    public void setWelcome(int welcome) {
+        this.welcome = welcome;
     }
 }
