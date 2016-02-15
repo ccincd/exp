@@ -30,6 +30,7 @@
         <crate.client.version>0.49.2</crate.client.version>
         <crate.jdbc.version>1.7.0</crate.jdbc.version>
         <crate.api.version>1.0.3</crate.api.version>
+        <memcached.version>2.0.0</memcached.version>
     </properties>
 
     <dependencies>
@@ -238,6 +239,14 @@
             <version>${apache.commons.io.version}</version>
         </dependency>
         <!-- apache commons end -->
+
+        <!-- cache start -->
+        <dependency>
+            <groupId>com.googlecode.xmemcached</groupId>
+            <artifactId>xmemcached</artifactId>
+            <version>${memcached.version}</version>
+        </dependency>
+        <!-- cache end -->
 
         <dependency>
           <groupId>joda-time</groupId>
