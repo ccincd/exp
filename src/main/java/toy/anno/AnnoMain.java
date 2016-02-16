@@ -1,4 +1,4 @@
-package anno;
+package toy.anno;
 
 import org.springframework.stereotype.Component;
 

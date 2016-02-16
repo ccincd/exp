@@ -1,4 +1,4 @@
-package time;
+package toy.time;
 
 import org.joda.time.DateTime;
 

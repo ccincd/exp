@@ -1,4 +1,4 @@
-package xa;
+package toy.xa;
 
 /**
  * Constants

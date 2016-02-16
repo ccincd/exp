@@ -1,4 +1,4 @@
-package cache;
+package toy.cache;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -20,7 +20,7 @@ import net.rubyeye.xmemcached.utils.AddrUtil;
 public class MemcacheTest {
 
     /**
-     * {@link cache.TestEnum}
+     * {@link TestEnum}
      */
     private int welcome;
 

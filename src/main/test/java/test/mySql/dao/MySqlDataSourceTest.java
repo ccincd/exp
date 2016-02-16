@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 
+import toy.test.mySql.dao.TestMySqlDataSourceDao;
+
 import common.TxRollBackBaseTest;
 
 /**

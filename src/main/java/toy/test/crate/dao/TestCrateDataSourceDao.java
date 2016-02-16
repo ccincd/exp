@@ -1,4 +1,4 @@
-package test.crate.dao;
+package toy.test.crate.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package anno;
+package toy.anno;
 
 import java.lang.reflect.Method;
 
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AspectAnno {
 
-    @Around("@annotation(anno.Fruit)")
+    @Around("@annotation(toy.anno.Fruit)")
     public Object proxyRequestTemplate(ProceedingJoinPoint joinPoint) {
         Object result = null;
         try {

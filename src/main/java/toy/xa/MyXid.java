@@ -1,4 +1,4 @@
-package xa;
+package toy.xa;
 
 import javax.transaction.xa.Xid;
 

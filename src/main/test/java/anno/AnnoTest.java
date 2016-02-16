@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
+import toy.anno.AnnoMain;
+
 import common.BaseTest;
 
 /**

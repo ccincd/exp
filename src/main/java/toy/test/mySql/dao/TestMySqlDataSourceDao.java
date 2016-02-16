@@ -1,4 +1,4 @@
-package test.mySql.dao;
+package toy.test.mySql.dao;
 
 import org.springframework.stereotype.Repository;
 

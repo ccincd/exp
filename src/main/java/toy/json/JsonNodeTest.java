@@ -1,4 +1,4 @@
-package json;
+package toy.json;
 
 import java.io.IOException;
 
