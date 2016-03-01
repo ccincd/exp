@@ -202,10 +202,9 @@
 
         <!-- google utils start -->
         <dependency>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava-tests</artifactId>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
             <version>${guava.google.version}</version>
-          <classifier>test-sources</classifier>
         </dependency>
 
         <dependency>
