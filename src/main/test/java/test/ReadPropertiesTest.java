@@ -15,7 +15,7 @@ import common.BaseTest;
  */
 public class ReadPropertiesTest extends BaseTest {
 
-    private static final String resourceName = "ApplicationResources.properties";
+    private static final String resourceName = "config/ApplicationResources.properties";
 
     @Test
     public void testResourceLoading() {

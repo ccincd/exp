@@ -11,7 +11,7 @@ import java.io.InputStream;
  */
 public class ReadPropertiesTest {
 
-    private static final String resourceName = "ApplicationResources.properties";
+    private static final String resourceName = "config/ApplicationResources.properties";
 
     public static void main(String[] args) {
         InputStream inputStreamGlobal = ReadPropertiesTest.class.getClassLoader().getResourceAsStream(resourceName);
