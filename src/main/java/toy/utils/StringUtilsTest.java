@@ -14,6 +14,18 @@ public class StringUtilsTest {
     public static void main(String[] args) {
         System.out.println(StringUtils.substring("dskabcee", 3));
 
-        StringUtils.substringBefore("dskeabcee", "e");
+        System.out.println(StringUtils.substringBefore("dskeabcee", "e"));
+        System.out.println(StringUtils.substringBeforeLast("dskeabcee", "e"));
+
+        System.out.println(StringUtils.substringAfter("dskeabcedeh", "ske"));
+        System.out.println(StringUtils.substringAfterLast("dskeabcedeh", "e"));
+
+        /* public static String substringBetween(final String str, final String tag) */
+        System.out.println(StringUtils.substringBetween("dskeabcedeh", "ds"));
+        System.out.println(StringUtils.substringBetween("dskeabcedeh", "ds", "e"));
+
+        // 不处理嵌套
+        String[] strs = StringUtils.substringsBetween("dskeabcedsehdsabc", "ds", "c");
+        System.out.println(strs);
     }
 }
