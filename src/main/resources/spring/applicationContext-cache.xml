@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 缺省使用了一个名字叫 cacheManager 的缓存管理器 -->
+    <cache:annotation-driven/>
+
+    <!-- ConcurrentMapCacheFactoryBean 基于 java.util.concurrent.ConcurrentHashMap 的一个内存缓存实现方案 -->
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+                    <property name="name" value="default"/>
+                </bean>
+
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
+                    <property name="name" value="personCache"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
 
     <bean id="memcached" class="cache.Memcached">
         <property name="memcachedClient" value="${cache.memcache.addr}"/>
