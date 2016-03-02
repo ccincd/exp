@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:spring/applicationContext-crate.xml"/>
-    <import resource="classpath:spring/applicationContext-dataSource.xml"/>
+    <!--<import resource="classpath:spring/applicationContext-dataSource.xml"/>-->
     <import resource="classpath:spring/applicationContext-web.xml"/>
     <import resource="classpath:spring/applicationContext-cache.xml"/>
 
