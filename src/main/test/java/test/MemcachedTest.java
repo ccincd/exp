@@ -56,5 +56,25 @@ public class MemcachedTest extends BaseTest {
         dbPerson = personService.getByName(names[0]);
 
         System.out.println(dbPerson.get());
+
+        System.out.println("####################");
+
+        personService.getByName(names[2]);// from fake db
+        personService.getByName(names[2]);// from fake db
+
+        System.out.println("********************");
+
+        Optional<Person> leonard = personService.getByName(names[1]);// from fake db
+        personService.getByNameAndAge(leonard.get().getName(), leonard.get().getAge());// from fake db
+        personService.getByNameAndAge(leonard.get().getName(), leonard.get().getAge());// from cache
+        Optional<Person> absent = personService.getByNameAndAge(leonard.get().getName(), 105);// no such person
+        Assert.assertTrue(!absent.isPresent());
+
+        System.out.println(".....................");
+        Person p1 = personService.updatePerson(leonard.get());
+        Person p2 = personService.updatePerson(leonard.get());
+
+        System.out.println(p1);
+        System.out.println(p2);
     }
 }
