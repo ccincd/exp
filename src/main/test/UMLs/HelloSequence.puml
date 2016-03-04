@@ -1,7 +1,23 @@
 @startuml
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+App端 -> Mobile后台: 请求验证码
+Mobile后台 -> Permission: 检查用户是否合法（锁定/离职）
+Permission --> Mobile后台: 在职
+Permission -> ISAPI: 检查用户手机号的合法性
+ISAPI --> Mobile后台: 返回手机号
+Mobile后台 -> Permission: 检查用户是否是APP用户
+Permission --> Mobile后台: APP用户
+Mobile后台 -> Permission: 请求验证码
+Permission --> Permission: 生成并缓存验证码
+Permission --> Mobile后台: 返回验证码
+Mobile后台 -> Notify: 请求发送短信
+Notify -> 短信网关: 调用短信下行接口
+短信网关 --> App端: 短信返回验证码
+App端 -> Mobile后台: 请求登录
+Mobile后台 -> Permission: 检查验证码是否合法
+Permission --> Mobile后台: 合法
+Mobile后台 -> Permission: 检查用户是否合法以及是否是App用户
+Permission --> Mobile后台: 合法且是App用户
+Mobile后台 -> Permission: 请求token
+Permission --> Mobile后台: 返回token\n（3DES加密 userId_currentTime）信息
+Mobile后台 --> App端: <b>登录成功</b>\n将token放入Cookie中并设置过期时间后返回
 @enduml
