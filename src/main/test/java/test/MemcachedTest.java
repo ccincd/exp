@@ -1,17 +1,18 @@
 package test;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
-import net.rubyeye.xmemcached.MemcachedClient;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import toy.guava.Person;
-import cache.Memcached;
+import cache.bean.Person;
+import cache.common.Constants;
+import cache.factory.PersonFactory;
 import cache.service.PersonService;
 
+import com.google.common.base.Optional;
 import common.BaseTest;
 
 /**
@@ -19,28 +20,41 @@ import common.BaseTest;
  */
 public class MemcachedTest extends BaseTest {
 
-    private static final int ITERATION_NUM = 10000;
+    /*@Resource
+    Memcached memcached;*/
 
-    @Resource
-    Memcached memcached;
-
+    private static String[] names = new String[] {
+        "Leonard",
+        "Jackson",
+        "Rose",
+        "Claire"
+    };
     @Resource
     PersonService personService;
 
     @Test
-    public void testMemcached() {
-        MemcachedClient memcachedClient = memcached.getMemcachedClient();
-    }
-
-    @Test
     public void testSimpleCacheAnnotation() {
-        for (int i = 0; i < ITERATION_NUM; i++) {
-            String name = RandomStringUtils.randomAlphabetic(3);
+        List<Person> persons = PersonFactory.newSomeRandomPerson(Constants.MAX_RANDOM_PERSON_NUM);
+        personService.addPerson(persons);
 
-            Person person = personService.getByName(name);
-            Assert.assertNotNull(person);
+        System.out.println(personService.getPersonNumber() + ":" + Constants.MAX_RANDOM_PERSON_NUM);
+
+        for (String name : names) {
+            Person person = PersonFactory.newPersonWithRandomAgeAndGentle(name);
+            personService.addPerson(person);
         }
 
-        System.out.println(personService.getPersons().size());
+        Optional<Person> dbPerson = personService.getByName(names[0]);// from fake db
+        Optional<Person> cachePerson = personService.getByName(names[0]);// from cache
+
+        Assert.assertTrue(dbPerson.isPresent());
+        Assert.assertTrue(cachePerson.isPresent());
+
+        cachePerson.get().setAge(28);
+        personService.updateAge(cachePerson.get());// evict from cache
+
+        dbPerson = personService.getByName(names[0]);
+
+        System.out.println(dbPerson.get());
     }
 }
