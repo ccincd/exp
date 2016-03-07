@@ -1,0 +1,13 @@
+@startuml
+App -> Mobile: 请求QTA URL资源
+Mobile --> Mobile: Filter 验证token的合法性
+Mobile -> Permission: 请求rtoken <randomAlphanumeric(n)>
+Permission --> Mobile: 生成rtoken并缓存 <rtoken, 1, userId>
+Mobile -> Permission: 从token中获取userId
+Permission --> Mobile: 返回userId
+Mobile -> QTA: 转发 将rtoken和userId放入请求体
+QTA -> Permission: 验证请求是否来自Mobile\n<b>检查是否具有访问QTA URL的权限</b>
+Permission --> QTA: 返回验证结果
+QTA --> Mobile: 返回转发请求的结果
+Mobile --> App: 适配结果格式并返回
+@enduml

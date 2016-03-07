@@ -1,5 +1,0 @@
-@startuml
-App -> Mobile: 请求QTA URL资源
-Mobile -> Permission: Authentication Response
-Permission -> QTA: Another authentication Request
-@enduml
