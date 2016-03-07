@@ -3,6 +3,7 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,9 +28,28 @@ public class ValidationController {
      * @param bindingResult BindingResult
      * @return ApiResult
      */
-    @RequestMapping(value = "valid.json", method = RequestMethod.GET)
+    @RequestMapping(value = "validGet.json", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResult valid(@Validated User user, BindingResult bindingResult) {
+    public ApiResult validGet(@Validated User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ApiResult.fail(bindingResult.getFieldError().getDefaultMessage());
+        }
+
+        return ApiResult.succ(user);
+    }
+
+    /**
+     * { "name":"cc", "age":95, "email":null, "address":"street", "friends":[ "cc", "dd", "ee", "ff" ] }
+     *
+     * Content-Type: application/json
+     *
+     * @param user User
+     * @param bindingResult BindingResult
+     * @return ApiResult
+     */
+    @RequestMapping(value = "validPost.json", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResult validPost(@Validated @RequestBody User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ApiResult.fail(bindingResult.getFieldError().getDefaultMessage());
         }
