@@ -10,8 +10,12 @@ import java.util.Objects;
  * @time 下午6:35
  */
 public enum StandardEnum implements EnumTrait {
-    GANDALF(1, "Gandalf", "the white wizard"), FRODO(2, "Frodo", "the ring bearer"), Pippin(3, "Pippin",
-            "fool of took"), Merry(4, "Merry", "Merry Brandybuck");
+
+    GANDALF(1, "Gandalf", "the white wizard"),
+    FRODO(2, "Frodo", "the ring bearer"),
+    Pippin(3, "Pippin", "fool of took"),
+    Merry(4, "Merry", "Merry Brandybuck")
+    ;
 
     private final Integer code;
     private final String name;
