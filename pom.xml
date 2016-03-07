@@ -35,6 +35,9 @@
         <crate.api.version>1.0.3</crate.api.version>
         <memcached.version>2.0.0</memcached.version>
         <javax.servlet.version>2.5</javax.servlet.version>
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <commons.collections.version>3.2.1</commons.collections.version>
     </properties>
 
     <dependencies>
@@ -257,7 +260,13 @@
         <dependency>
             <groupId>org.apache.directory.studio</groupId>
             <artifactId>org.apache.commons.collections</artifactId>
-            <version>3.2.1</version>
+            <version>${commons.collections.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
         </dependency>
         <!-- apache commons end -->
 
@@ -269,17 +278,28 @@
         </dependency>
         <!-- cache end -->
 
+        <!-- util start -->
         <dependency>
           <groupId>joda-time</groupId>
           <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
         </dependency>
+        <!-- util end -->
 
+        <!-- javax start -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax.validation.version}</version>
+        </dependency>
+        <!-- javax end -->
     </dependencies>
 
     <build>

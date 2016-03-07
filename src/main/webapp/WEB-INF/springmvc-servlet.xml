@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+
+    <!--<mvc:annotation-driven/> is a tag added in Spring 3.0 which does the following:
+
+    1. Configures the Spring 3 Type ConversionService (alternative to PropertyEditors)
+    2. Adds support for formatting Number fields with @NumberFormat
+    3. Adds support for formatting Date, Calendar, and Joda Time fields with @DateTimeFormat, if Joda Time is on the classpath
+    4. Adds support for validating @Controller inputs with @Valid, if a JSR-303 Provider is on the classpath
+    5. Adds support for support for reading and writing XML, if JAXB is on the classpath (HTTP message conversion with @RequestBody/@ResponseBody)
+    6. Adds support for reading and writing JSON, if Jackson is o n the classpath (along the same lines as #5)-->
+    <mvc:annotation-driven/>
+
+    <context:component-scan base-package="controller"/>
+
+</beans>

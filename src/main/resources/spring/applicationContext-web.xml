@@ -10,9 +10,19 @@
 
     <aop:aspectj-autoproxy/>
 
+    <!--Looks for annotations on beans in the same application context it is defined and declares support for
+    all the general annotations like @Autowired, @Resource, @Required, @PostConstruct etc etc.
+    <context:annotation-config> does NOT search for @Component, @Controller, etc.
+    <context:component-scan> DOES search for those @Component annotations,
+    as well as the annotations that <context:annotation-config/> does.
+    there are other "annotation-driven" tags available to provide additional functionality in other Spring modules.
+    For example, <transaction:annotation-driven /> enables the use of the @Transaction annotation,
+    <task:annotation-driven /> is required for @Scheduled et al-->
     <context:annotation-config/>
 
-    <context:component-scan base-package="toy.aspect, toy.anno, cache"/>
+    <context:component-scan base-package="toy.aspect"/>
+    <context:component-scan base-package="toy.anno"/>
+    <context:component-scan base-package="cache"/>
 
     <context:property-placeholder location="classpath:config/*.properties"/>
 
