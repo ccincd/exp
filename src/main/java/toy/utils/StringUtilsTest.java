@@ -12,6 +12,10 @@ import org.apache.commons.lang3.StringUtils;
 public class StringUtilsTest {
 
     public static void main(String[] args) {
+        boolean theSame = StringUtils.equalsIgnoreCase("Hi, There", "hi, tHerE");
+        System.out.println(theSame);
+
+        // **************************************************************************
         System.out.println(StringUtils.substring("dskabcee", 3));
 
         System.out.println(StringUtils.substringBefore("dskeabcee", "e"));
