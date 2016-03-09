@@ -1,7 +1,7 @@
 package pattern;
 
 /**
- * 线程安全的单例类要考虑使用volatile以及锁
+ * 线程安全的单例类要考虑使用volatile关键字以及锁
  * 锁的粒度可以控制在方法内
  *
  * Created by cc on 16/3/6.
