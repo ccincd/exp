@@ -11,12 +11,16 @@ public class BaseTest {
     /**
      * 构造器绝不能调用可被覆盖的方法
      */
-    public BaseTest() {
-        hi();
+    /*
+     * public BaseTest() { hi(); }
+     */
+
+    private void sayHello() {
+        System.out.println("hi");
     }
 
     protected void hi() {
-        System.out.println("hi");
+        sayHello();
     }
 
     /*
