@@ -17,6 +17,16 @@ import com.google.common.collect.Lists;
  */
 public class PredicatesTest {
 
+    protected static List<Person> persons;
+
+    static {
+        persons = Lists.newArrayList();
+        persons.add(new Person("jackson", 1, 35));
+        persons.add(new Person("rose", 2, 25));
+        persons.add(new Person("ada wong", 2, 50));
+        persons.add(new Person("christina", 2, 16, "wall street"));
+    }
+
     protected static Predicate<Person> filterName = new Predicate<Person>() {
         @Override
         public boolean apply(Person input) {
@@ -39,12 +49,25 @@ public class PredicatesTest {
         }
     };
 
-    public static void main(String[] args) {
-        List<Person> persons = Lists.newArrayList();
-        persons.add(new Person("jackson", 1, 35));
-        persons.add(new Person("rose", 2, 25));
-        persons.add(new Person("ada wong", 2, 50));
+    protected static Predicate<Person> filterTeenAge = new Predicate<Person>() {
+        @Override
+        public boolean apply(Person input) {
+            if (input == null) {
+                return false;
+            }
 
+            return input.getAge() > 0 && input.getAge() < 19;
+        }
+    };
+
+    protected static Predicate<Person> filterAddr = new Predicate<Person>() {
+        @Override
+        public boolean apply(Person input) {
+            return input != null && StringUtils.isNotBlank(input.getAddress());
+        }
+    };
+
+    public static void testAnd() {
         for (Person person : persons) {
             boolean flag = Predicates.and(filterName, filterAge).apply(person);
 
@@ -52,5 +75,22 @@ public class PredicatesTest {
                 System.out.println(person);
             }
         }
+    }
+
+    /**
+     * 断言里的and和or可以嵌套使用，类似于(A && (B || C))
+     */
+    public static void testAndOr() {
+        for (Person person : persons) {
+            boolean flag = Predicates.and(filterName, Predicates.or(filterTeenAge, filterAddr)).apply(person);
+
+            if (flag) {
+                System.out.println(person);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        testAndOr();
     }
 }
