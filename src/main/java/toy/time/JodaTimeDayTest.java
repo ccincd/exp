@@ -17,7 +17,7 @@ public class JodaTimeDayTest {
     /**
      * 如果不加L则会当成int来计算从而造成数据溢出
      */
-    public static long NINETY_DAYS_MILLI = 90 * 24 * 3600 * 1000L;
+    // public static long NINETY_DAYS_MILLI = 90 * 24 * 3600 * 1000L;
 
     public static void main(String[] args) {
         String dayStrBegin = "2016-03-14";
