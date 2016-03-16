@@ -22,5 +22,6 @@ public class EnumHashCodeEqualsTest {
         }
 
         System.out.println(map.get(SaleMetric.PAYED_COUNT));
+        System.out.println(map.get(SaleMetric.codeOf(3)));
     }
 }
