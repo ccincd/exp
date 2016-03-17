@@ -29,5 +29,26 @@ public class IntDoubleInstanceOf {
         if (map.get("d") instanceof Integer) {
             System.out.println("oops");
         }
+
+        /////////////////////////////////////////////
+
+        Object obj1 = 0.0;
+        Object obj2 = 0;
+
+        if (obj1 instanceof Double) {
+            System.out.println("hi");
+        }
+
+        if (obj2 instanceof Integer) {
+            System.out.println("hello");
+        }
+
+        if (obj1 instanceof Integer) {
+            System.out.println("oops");
+        }
+
+        if (obj2 instanceof Double) {
+            System.out.println("oops");
+        }
     }
 }
