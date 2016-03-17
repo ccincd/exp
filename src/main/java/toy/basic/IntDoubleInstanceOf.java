@@ -50,5 +50,10 @@ public class IntDoubleInstanceOf {
         if (obj2 instanceof Double) {
             System.out.println("oops");
         }
+
+        /////////////////////////////////////////////
+
+        Double d = Double.valueOf(0);
+        System.out.println(d);
     }
 }
