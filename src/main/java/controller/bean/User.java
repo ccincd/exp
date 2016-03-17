@@ -1,16 +1,19 @@
 package controller.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * User
@@ -46,6 +49,13 @@ public class User implements Serializable {
      */
     @NotEmpty(message = "不能没有朋友")
     private List<String> friends;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+
+    @Pattern(regexp = "^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$", message = "手机号不合法")
+    private String phoneNumber;
 
     public String getName() {
         return name;
@@ -87,9 +97,26 @@ public class User implements Serializable {
         this.friends = friends;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
         return "User{" + "name='" + name + '\'' + ", age=" + age + ", email='" + email + '\'' + ", address='" + address
-                + '\'' + ", friends=" + friends + '}';
+                + '\'' + ", friends=" + friends + ", date='" + date + '\'' + ", phoneNumber='" + phoneNumber + '\''
+                + '}';
     }
 }
