@@ -15,7 +15,7 @@ public enum BusinessType implements EnumTrait {
     DIRECT_PRE(2, "直销预付"),
     DIRECT_CASH(3, "直销现付"),
     NIGHT_SALE(4, "夜销"),
-    OTHER(5, "其它");
+    OTHER(5, "其他");
 
     private final Integer code;
 
