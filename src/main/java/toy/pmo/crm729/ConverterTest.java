@@ -25,11 +25,25 @@ public class ConverterTest {
         return SaleStatisticsToVoConverter.saleInfoListToVo(saleInfoList);
     }
 
+    public static List<SaleCompareVo> testSaleCompareInfoToVo(int metricId) {
+        List<Map<String, Object>> saleInfoList = DataGenerator.generateSummaryDataV1();
+
+        return SaleStatisticsToVoConverter.saleCompareInfoToVo(saleInfoList, metricId);
+    }
+
     public static void main(String[] args) {
         /*String str = testSaleInfoOverviewToVo();
         System.out.println(str);*/
 
-        List<SaleListVo> saleListVos = testSaleInfoListToVo();
-        System.out.println(saleListVos);
+        /*List<SaleListVo> saleListVos = testSaleInfoListToVo();
+        System.out.println(saleListVos);*/
+
+        /*for (SaleMetric saleMetric : SaleMetric.values()) {
+            List<SaleCompareVo> saleCompareVos = testSaleCompareInfoToVo(saleMetric.getCode());
+            System.out.println(saleCompareVos);
+        }*/
+
+        List<SaleCompareVo> saleCompareVos = testSaleCompareInfoToVo(SaleMetric.SALE_AMOUNT.getCode());
+        System.out.println(saleCompareVos);
     }
 }

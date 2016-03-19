@@ -205,8 +205,8 @@ public class SaleStatisticsToVoConverter {
         }
 
         // 以期为纬度，计算各个合作业务的汇总数据
-        SaleCompareVo totalPerTerm = new SaleCompareVo();
-        totalPerTerm.setName("总计");
+        SaleCompareVo totalTerms = new SaleCompareVo();
+        totalTerms.setName("总计");
         Map<String, String> totalTermsData = Maps.newHashMap();
 
         if (metricId == SaleMetric.SALE_AMOUNT.getCode()) {
@@ -240,7 +240,8 @@ public class SaleStatisticsToVoConverter {
         }
 
         // 存储汇总数据到返回对象中
-        saleCompareVos.add(totalPerTerm);
+        totalTerms.setData(totalTermsData);
+        saleCompareVos.add(totalTerms);
 
         return saleCompareVos;
     }
