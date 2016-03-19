@@ -9,9 +9,9 @@ import java.util.Map;
 public class ConverterTest {
 
     private static String templateStr =
-            "这是一段测试字符串{0}这是一段测试字符串{1}这是一段测试字符串{2}这是一段测试字符串{3}"
-            + "这是一段测试字符串{4}这是一段测试字符串{5}这是一段测试字符串{6}这是一段测试字符串{7}"
-                    + "这是一段测试字符串{8}这是一段测试字符串{9}这是一段测试字符串{10}这是一段测试字符串{11}";
+            "这是一段测试字符串{0}这是一段测试字符串{1,number,#}这是一段测试字符串{2,number,#}这是一段测试字符串{3,number,#.##}"
+            + "这是一段测试字符串{4}这是一段测试字符串{5}这是一段测试字符串{6,number,#}这是一段测试字符串{7,number,#}"
+                    + "这是一段测试字符串{8,number,#}这是一段测试字符串{9,number,#}这是一段测试字符串{10,number,#}";
 
     private static String testSaleInfoOverviewToVo() {
         List<Map<String, Object>> data = DataGenerator.generateSummaryDataV1();
@@ -20,6 +20,8 @@ public class ConverterTest {
     }
 
     public static void main(String[] args) {
-        testSaleInfoOverviewToVo();
+        String str = testSaleInfoOverviewToVo();
+
+        System.out.println(str);
     }
 }

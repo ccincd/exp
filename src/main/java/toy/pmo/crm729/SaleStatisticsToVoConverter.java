@@ -56,16 +56,13 @@ public class SaleStatisticsToVoConverter {
         // 订单数量环比与同比情况，mom（month over month，环比） yoy（year over year，同比）
         String momRatioStr;
         String yoyRatioStr;
-        int momPaidCount = 0;
-        int yoyPaidCount = 0;
+        int momPaidCount;
+        int yoyPaidCount;
 
         // 各个业务线间夜量分布，分别为团购、直销预付、直销现付、夜销、其它
         Map<String, Integer> businessCounts = Maps.newHashMap();
-        for (BusinessType businessType : BusinessType.values()) {
-            businessCounts.put(businessType.getName(), 0);
-        }
 
-        int baseIndex = BusinessType.values().length;
+        int baseIndex = 0;
 
         // 本期数据统计
         dateRange = (String) data.get(baseIndex).get("reportDate");
@@ -74,7 +71,7 @@ public class SaleStatisticsToVoConverter {
 
             String biz = (String) dataSlice.get("biz");
             Integer nightCount = Integer.parseInt((String) dataSlice.get("rnCnt"));
-            businessCounts.put(biz, businessCounts.get(biz) + nightCount);
+            businessCounts.put(biz, nightCount);
 
             paidCount += Integer.parseInt((String) dataSlice.get("paidCnt"));
             livedRoomNightCount += Integer.parseInt((String) dataSlice.get("livedRnCnt"));
@@ -84,20 +81,12 @@ public class SaleStatisticsToVoConverter {
         baseIndex += BusinessType.values().length;
 
         // 上期数据统计，用以计算环比数据
-        for (int j = 0; j < BusinessType.values().length; j++) {
-            Map<String, Object> dataSlice = data.get(baseIndex + j);
-
-            momPaidCount += Integer.parseInt((String) dataSlice.get("paidCnt"));
-        }
+        momPaidCount = calcPaidCountOfOneTerm(baseIndex, data);
 
         baseIndex += BusinessType.values().length;
 
         // 去年同期数据统计，用以计算同比数据
-        for (int j = 0; j < BusinessType.values().length; j++) {
-            Map<String, Object> dataSlice = data.get(baseIndex + j);
-
-            yoyPaidCount += Integer.parseInt((String) dataSlice.get("paidCnt"));
-        }
+        yoyPaidCount = calcPaidCountOfOneTerm(baseIndex, data);
 
         // 计算同比、环比增减信息
         int momDiffCount = paidCount - momPaidCount;
@@ -434,5 +423,17 @@ public class SaleStatisticsToVoConverter {
                 totals.put(entry.getKey(), total.toString());
             }
         }
+    }
+
+    private static int calcPaidCountOfOneTerm(int baseIndex, List<Map<String, Object>> data) {
+        int totalPaidCount = 0;
+
+        for (int j = 0; j < BusinessType.values().length; j++) {
+            Map<String, Object> dataSlice = data.get(baseIndex + j);
+
+            totalPaidCount += Integer.parseInt((String) dataSlice.get("paidCnt"));
+        }
+
+        return totalPaidCount;
     }
 }
