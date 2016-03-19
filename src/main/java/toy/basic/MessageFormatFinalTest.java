@@ -75,6 +75,12 @@ public class MessageFormatFinalTest {
      */
     private static final String anotherRightCurlyBrace = "oh, } is a pig";
 
+    /**
+     * 如果不加FormatType和FormatStyle，则5000会格式化为5,000，然而加了同样也会
+     * 可以使用{0, number, #}的形式来去掉,
+     */
+    private static final String integerStr = "hi, China is {0, number, #} years old";
+
     public static void main(String[] args) {
         // String sayHello = MessageFormat.format(str, "there", "cc", "glad");
         Object[] arguments = new Object[] {"there", "cc", "glad"};
@@ -136,5 +142,9 @@ public class MessageFormatFinalTest {
         String anotherValue = MessageFormat.format(anotherPig, anotherArray);
 
         System.out.println(anotherValue);
+
+        //////////////////////////////
+
+        System.out.println(MessageFormat.format(integerStr, 5000.1234));
     }
 }
