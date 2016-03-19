@@ -19,9 +19,17 @@ public class ConverterTest {
         return SaleStatisticsToVoConverter.saleInfoOverviewToVo(data, templateStr);
     }
 
-    public static void main(String[] args) {
-        String str = testSaleInfoOverviewToVo();
+    private static List<SaleListVo> testSaleInfoListToVo() {
+        List<Map<String, Object>> saleInfoList = DataGenerator.generateSummaryDataV1();
 
-        System.out.println(str);
+        return SaleStatisticsToVoConverter.saleInfoListToVo(saleInfoList);
+    }
+
+    public static void main(String[] args) {
+        /*String str = testSaleInfoOverviewToVo();
+        System.out.println(str);*/
+
+        List<SaleListVo> saleListVos = testSaleInfoListToVo();
+        System.out.println(saleListVos);
     }
 }
