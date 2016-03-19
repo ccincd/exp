@@ -281,8 +281,8 @@ public class SaleStatisticsToVoConverter {
             }
         }
 
-        // 初始化以合作业务为维度的汇总数据
-        initTotalsData(countsMap, totals, metricId);
+        // 计算以合作业务为维度的汇总数据
+        calcTotalsData(countsMap, totals, metricId);
 
         // 初始化总计数据容器（每项为各个合作业务相应数据的汇总）
         Object totalWhole;
@@ -408,7 +408,7 @@ public class SaleStatisticsToVoConverter {
         countsMap.get(sliceBizName).add(count.toString());
     }
 
-    private static void initTotalsData(Map<String, List<String>> countsMap, Map<String, String> totals, int metricId) {
+    private static void calcTotalsData(Map<String, List<String>> countsMap, Map<String, String> totals, int metricId) {
         for (Map.Entry<String, List<String>> entry : countsMap.entrySet()) {
             if (metricId == SaleMetric.SALE_AMOUNT.getCode()) {
                 Double total = 0.0;

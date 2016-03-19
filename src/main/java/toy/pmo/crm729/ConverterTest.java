@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Tester
+ *
  * Created by cc on 16/3/19.
  */
 public class ConverterTest {
@@ -31,6 +33,10 @@ public class ConverterTest {
         return SaleStatisticsToVoConverter.saleCompareInfoToVo(saleInfoList, metricId);
     }
 
+    public static SaleDetailVo testSaleInfoDetailToVo(int metricId) {
+        return SaleStatisticsToVoConverter.saleInfoDetailToVo(DataGenerator.generateDetailDataV1(), metricId, 3);
+    }
+
     public static void main(String[] args) {
         /*String str = testSaleInfoOverviewToVo();
         System.out.println(str);*/
@@ -43,7 +49,12 @@ public class ConverterTest {
             System.out.println(saleCompareVos);
         }*/
 
-        List<SaleCompareVo> saleCompareVos = testSaleCompareInfoToVo(SaleMetric.SALE_AMOUNT.getCode());
-        System.out.println(saleCompareVos);
+        /*List<SaleCompareVo> saleCompareVos = testSaleCompareInfoToVo(SaleMetric.SALE_AMOUNT.getCode());
+        System.out.println(saleCompareVos);*/
+
+        for (SaleMetric saleMetric : SaleMetric.values()) {
+            SaleDetailVo saleDetailVo = testSaleInfoDetailToVo(saleMetric.getCode());
+            System.out.println(saleDetailVo);
+        }
     }
 }
