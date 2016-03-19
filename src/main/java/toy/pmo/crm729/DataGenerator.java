@@ -86,11 +86,11 @@ public class DataGenerator {
         }
     }
 
-    public static List<Map<String, Object>> generateSummaryData() {
+    public static List<Map<String, Object>> generateSummaryDataV1() {
         return generateData(summaryDataJsonStrV1);
     }
 
-    public static List<Map<String, Object>> generateDetailData() {
+    public static List<Map<String, Object>> generateDetailDataV1() {
         return generateData(detailDataJsonStrV1);
     }
 
