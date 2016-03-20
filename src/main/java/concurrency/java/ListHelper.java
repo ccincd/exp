@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * 线程不安全，注意锁对象
  *
+ * @see ImprovedList
  * Created by cc on 16/3/20.
  */
 @NotThreadSafe
