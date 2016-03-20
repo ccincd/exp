@@ -5,6 +5,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 /**
  * 线程不安全
+ * 线程安全与否首先要看的是一个类的状态体现在什么地方
  * To understand the solution, you need to understand the problem first.
  *
  * Created by cc on 16/3/20.
