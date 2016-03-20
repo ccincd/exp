@@ -2,6 +2,7 @@ package pattern.observer;
 
 /**
  * 客户端测试代码
+ * 实例描述：客户支付了订单款项，这时财务需要开具发票，出纳需要记账，配送员需要配货
  *
  * Created by cc on 16/3/20.
  */
