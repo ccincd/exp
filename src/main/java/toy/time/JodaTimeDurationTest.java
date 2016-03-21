@@ -1,11 +1,15 @@
 package toy.time;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.Days;
+import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
+import java.util.List;
 
 /**
  * JodaTimeDurationTest
@@ -39,9 +43,22 @@ public class JodaTimeDurationTest {
 
     public static void main(String[] args) {
         String begin = "2016-03-04";
-        String end = "2016-03-05";
+        String end = "2016-03-15";
 
-        int duration = JodaTimeDurationTest.daysOfDuration(begin, end);
-        System.out.println(duration);
+        List<String> days = Lists.newArrayList();
+        String datePattern = "yyyy-MM-dd";
+        DateTimeFormatter dateFormatter = DateTimeFormat.forPattern(datePattern);
+
+        LocalDate localDateStart = dateFormatter.parseLocalDate(begin);
+        LocalDate localDateEnd = dateFormatter.parseLocalDate(end);
+        for (LocalDate workDate = localDateStart; workDate.compareTo(localDateEnd) <= 0;) {
+            days.add(workDate.toString("yyyy-MM-dd"));
+            workDate = workDate.plusDays(1);
+        }
+
+        System.out.println(days);
+
+        // int duration = JodaTimeDurationTest.daysOfDuration(begin, end);
+        // System.out.println(duration);
     }
 }

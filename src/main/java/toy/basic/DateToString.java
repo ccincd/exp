@@ -2,7 +2,11 @@ package toy.basic;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * DateToString
@@ -24,5 +28,22 @@ public class DateToString {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Map<String, List<Map<String, Object>>> mapGroup(List<Map<String, Object>> dataList,
+            String groupField) {
+        Map<String, List<Map<String, Object>>> resultMap = new LinkedHashMap<>();
+        for (Map<String, Object> map : dataList) {
+            String groupValue = (String) map.get(groupField);
+            if (resultMap.containsKey(groupValue)) {
+                resultMap.get(map.get(groupField)).add(map);
+            } else {
+                List<Map<String, Object>> list = new ArrayList<>();
+                list.add(map);
+                resultMap.put(groupValue, list);
+            }
+        }
+
+        return resultMap;
     }
 }
