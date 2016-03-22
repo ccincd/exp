@@ -54,7 +54,7 @@ public class ListeningFutureDemo {
     public void testExecutingSequence() {
         Callable<String> callable = new Callable<String>() {
             @Override public String call() throws Exception {
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(10);
 
                 System.out.println("Execute 5 seconds later");
                 return "Hi, there";
@@ -89,13 +89,6 @@ public class ListeningFutureDemo {
                 System.out.println(throwable.getMessage());
             }
         }, anotherExeService);
-
-        try {
-            System.out.println("before get, wait 5 seconds");
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         try {
             System.out.println(future.get());
