@@ -1,4 +1,4 @@
-package toy.time;
+package toy.time.joda;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;

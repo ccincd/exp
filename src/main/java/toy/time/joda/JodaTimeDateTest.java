@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2016 Qunar.com. All Rights Reserved.
  */
-package toy.time;
+package toy.time.joda;
 
 import org.joda.time.LocalDate;
 
