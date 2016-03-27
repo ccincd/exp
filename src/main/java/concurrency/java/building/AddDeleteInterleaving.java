@@ -17,7 +17,7 @@ public class AddDeleteInterleaving {
 
     private static List<String> content = Lists.newArrayList();
 
-    public static List<String> names = Collections.synchronizedList(content);
+    public static final List<String> names = Collections.synchronizedList(content);
 
     static {
         names.add("joy");
@@ -32,10 +32,12 @@ public class AddDeleteInterleaving {
         executorService.submit(new Runnable() {
             @Override public void run() {
                 try {
-                    System.out.println("thread one");
-                    int lastIndex = names.size() - 1;
-                    System.out.println("thread one lastIndex: " + lastIndex);
-                    System.out.println(names.get(lastIndex));
+                    synchronized (names) {
+                        System.out.println("thread one");
+                        int lastIndex = names.size() - 1;
+                        System.out.println("thread one lastIndex: " + lastIndex);
+                        System.out.println(names.get(lastIndex));
+                    }
                 } catch (Exception e) {
                     System.out.println("oops");
                 }
@@ -50,12 +52,15 @@ public class AddDeleteInterleaving {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("thread two");
-                int lastIndex = names.size() - 1;
-                System.out.println("thread two lastIndex: " + lastIndex);
-                names.remove(lastIndex);
-                System.out.println("removed last element");
-                System.out.println("after removing: " + names);
+
+                synchronized (names) {
+                    System.out.println("thread two");
+                    int lastIndex = names.size() - 1;
+                    System.out.println("thread two lastIndex: " + lastIndex);
+                    names.remove(lastIndex);
+                    System.out.println("removed last element");
+                    System.out.println("after removing: " + names);
+                }
             }
         });
 
