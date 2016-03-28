@@ -53,6 +53,8 @@ public class SleepAndWait {
                 synchronized (SleepAndWait.class) {
                     System.out.println("this should show 2 seconds later");
                     System.out.println("before notify");
+                    // 调用某个对象的notify()方法，当前线程也必须拥有这个对象的monitor，
+                    // 因此调用notify()方法必须在同步块或者同步方法中进行（synchronized块或者synchronized方法）
                     SleepAndWait.class.notify();
                 }
             }
