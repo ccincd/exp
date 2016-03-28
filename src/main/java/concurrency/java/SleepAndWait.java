@@ -50,6 +50,8 @@ public class SleepAndWait {
          */
         new Thread(new Runnable() {
             @Override public void run() {
+                // 一个线程被唤醒不代表立即获取了对象的monitor，只有等调用完notify()
+                // 或者notifyAll()并退出synchronized块，释放对象锁后，其余线程才可获得锁执行
                 synchronized (SleepAndWait.class) {
                     System.out.println("this should show 2 seconds later");
                     System.out.println("before notify");
