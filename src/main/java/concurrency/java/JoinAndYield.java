@@ -14,6 +14,9 @@ public class JoinAndYield {
                 try {
                     /**
                      * 当前线程暂停，进入就绪状态，让系统的线程调度器重新调度一次
+                     * yield方法是一个native方法（Java语言本身不能对操作系统底层进行访问和操作，
+                     * 但是可以通过JNI接口调用其他语言来实现对底层的访问）
+                     *
                      * 测试无意义
                      */
                     Thread.yield();
