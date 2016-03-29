@@ -26,4 +26,6 @@
 
     <context:property-placeholder location="classpath:config/*.properties"/>
 
+    <bean id="globalExceptionHandler" class="exception.GlobalExceptionHandler"/>
+
 </beans>
