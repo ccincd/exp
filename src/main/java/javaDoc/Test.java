@@ -9,6 +9,7 @@ package javaDoc;
  * <li>第二点<code>JavaDoc说明</code></li>
  * <li>第三点说明</li>
  * </ul>
+ * true {@code true}
  *
  * @author chi.chen
  * @date 16-3-8
