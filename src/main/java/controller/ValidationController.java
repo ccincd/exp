@@ -1,5 +1,6 @@
 package controller;
 
+import controller.bean.Box;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -55,5 +56,18 @@ public class ValidationController {
         }
 
         return ApiResult.succ(user);
+    }
+
+    /**
+     * HTTP Status 405 - Request method 'GET' not supported
+     * 如果method改为GET，则会报400（不带参数，syntactically incorrect）或者404（带参数）
+     *
+     * @param box {@link controller.bean.Box}
+     * @return {@link controller.ApiResult}
+     */
+    @RequestMapping(value = "requestBodyGet.json", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResult requestBodyGet(@RequestBody Box box) {
+        return ApiResult.succ(box.toString());
     }
 }
