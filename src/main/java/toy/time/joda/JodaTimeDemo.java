@@ -1,6 +1,8 @@
 package toy.time.joda;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +19,8 @@ public class JodaTimeDemo {
     public static DateTime nowDateTime = new DateTime();
 
     public static Date nowDate = new Date(System.currentTimeMillis());
+
+    public static final long nowMilli = System.currentTimeMillis();
 
     public static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -73,5 +77,24 @@ public class JodaTimeDemo {
 
         DateTime compatibleDateTime = new DateTime(nowDate);
         System.out.println(compatibleDateTime.toString(SECOND_FORMAT));
+
+        DateTime nowDateTimeFromMilli = new DateTime(nowMilli);
+        System.out.println(nowDateTimeFromMilli.toString(SECOND_FORMAT));
+
+        /**
+         * 如果使用2016 06 27会抛出异常
+         */
+        String graduate = "2016-06-27";
+        DateTime graduateDate = new DateTime(graduate);
+        System.out.println(graduateDate.toString(DAY_FORMAT));
+
+        /**
+         * LocalTime和LocalDate
+         */
+        LocalDate birthDay = new LocalDate(1988, 9, 27);
+        System.out.println(birthDay);
+
+        LocalTime birthTime = new LocalTime(20, 45, 36, 125);
+        System.out.println(birthTime);
     }
 }
