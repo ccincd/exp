@@ -127,7 +127,7 @@ public class JodaTimeDemo {
          * 计算上个月的最后一天
          *
          * dayOfMoth返回的是Property
-         * 类似的有 yearOfCentury dayOfYear monthOfYear dayOfWeek
+         * 类似的有 yearOfCentury dayOfYear monthOfYear dayOfWeek millisOfDay
          */
         DateTime inLuguLake = new DateTime("2015-01-01");
         System.out.println(inLuguLake.minusMonths(1).dayOfMonth().
@@ -159,14 +159,34 @@ public class JodaTimeDemo {
         /**
          * 本月的第一天的凌晨三点进行批处理任务
          */
-        // nowLocalDate.dayOfMonth().withMinimumValue()
+        System.out.println(nowDateTime.withTimeAtStartOfDay().plusHours(3).toDate());
 
         /**
          * 两个日期相差几天
          */
         System.out.println(nowLocalDate.dayOfMonth().getDifference(inLuguLake));
 
+        System.out.println(Days.daysBetween(nowDateTime, inLuguLake).getDays());
+        System.out.println(Days.daysBetween(inLuguLake, nowDateTime).getDays());
+
         /*Date badDate = new Date(2013, 1, 6);
         System.out.println(badDate);*/
+
+        /**
+         * 获取今天的开始时间
+         */
+        System.out.println(nowDateTime.withTimeAtStartOfDay().toString(SECOND_FORMAT));
+
+        /**
+         * 获取今天的结束时间
+         */
+        System.out.println(nowDateTime.millisOfDay().withMaximumValue().toString(SECOND_FORMAT));
+
+        /**
+         * 现在离今天结束还有多长时间
+         */
+        Period millisLeft = new Period(
+                nowDateTime.millisOfDay().withMaximumValue().getMillis() - nowDateTime.getMillis());
+        System.out.println(millisLeft.getHours());
     }
 }
