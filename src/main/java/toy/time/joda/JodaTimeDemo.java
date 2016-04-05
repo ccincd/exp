@@ -90,11 +90,53 @@ public class JodaTimeDemo {
 
         /**
          * LocalTime和LocalDate
+         * 某个时间片段和某个时刻
          */
         LocalDate birthDay = new LocalDate(1988, 9, 27);
         System.out.println(birthDay);
 
         LocalTime birthTime = new LocalTime(20, 45, 36, 125);
         System.out.println(birthTime);
+
+        /**
+         * 某个时间跨度
+         *
+         * Duration：这个类表示一个绝对的精确跨度，使用毫秒为单位。这个类提供的方法可以用于通过标准的数学转换
+         * （比如 1 分钟 = 60 秒，1 天 = 24 小时），将时间跨度转换为标准单位（比如秒、分和小时）。
+         *
+         * Period：这个类表示与 Duration 相同的概念，但是以人们比较熟悉的单位表示，比如年、月、周。
+         * 您可以在以下情况使用 Period：您并不关心这段时期必须在何时发生，
+         * 或者您更关心检索单个字段的能力，这些字段描述由 Period 封装的时间跨度。
+         *
+         * Interval：这个类表示一个特定的时间跨度，将使用一个明确的时刻界定这段时间跨度的范围。Interval 为半开 区间，
+         * 这表示由 Interval 封装的时间跨度包括这段时间的起始时刻，但是不包含结束时刻。
+         */
+        //
+
+        /**
+         * 计算上个月的最后一天
+         *
+         * dayOfMoth返回的是Property
+         * 类似的有 yearOfCentury dayOfYear monthOfYear dayOfWeek
+         */
+        DateTime inLuguLake = new DateTime("2015-01-01");
+        System.out.println(inLuguLake.minusMonths(1).dayOfMonth().
+                withMaximumValue().toString(DAY_FORMAT));
+
+        /**
+         * 11月中第一个星期二
+         */
+        LocalDate inLuguLakeLocal = new LocalDate("2015-01-01");
+        LocalDate firstTuesdayInNovember = inLuguLakeLocal.monthOfYear().setCopy(11).
+                dayOfMonth().withMinimumValue().
+                plusDays(6).dayOfWeek().setCopy(1).plusDays(1);
+        System.out.println(firstTuesdayInNovember);
+
+        /**
+         * 五年后第二个月的最后一天
+         */
+        LocalDate complexCalc = inLuguLakeLocal.plusYears(5).monthOfYear().setCopy(2).
+                dayOfMonth().withMaximumValue();
+        System.out.println(complexCalc);
     }
 }
