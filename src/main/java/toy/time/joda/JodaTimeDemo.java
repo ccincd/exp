@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Easy to use
@@ -12,6 +13,18 @@ import java.util.Calendar;
  * Created by cc on 16/4/4.
  */
 public class JodaTimeDemo {
+
+    public static DateTime nowDateTime = new DateTime();
+
+    public static Date nowDate = new Date(System.currentTimeMillis());
+
+    public static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    public static SimpleDateFormat secondFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    public static final String DAY_FORMAT = "yyyy-MM-dd";
+
+    public static final String SECOND_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     public static void main(String[] args) {
         /**
@@ -49,5 +62,16 @@ public class JodaTimeDemo {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        /**
+         * joda time和JDK的互操作性
+         */
+        Calendar compatibleCalendar = Calendar.getInstance();
+        compatibleCalendar.setTime(dateTime.toDate());
+        System.out.println(secondFormat.format(compatibleCalendar.getTime()));
+        System.out.println(secondFormat.format(dateTime.toDate()));
+
+        DateTime compatibleDateTime = new DateTime(nowDate);
+        System.out.println(compatibleDateTime.toString(SECOND_FORMAT));
     }
 }
