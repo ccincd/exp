@@ -146,6 +146,16 @@ public class JodaTimeDemo {
                 dayOfMonth().withMaximumValue();
         System.out.println(complexCalc);
 
+        /**
+         * 本月的第一天的凌晨三点进行批处理任务
+         */
+        // nowLocalDate.dayOfMonth().withMinimumValue()
+
+        /**
+         * 两个日期相差几天
+         */
+        System.out.println(nowLocalDate.dayOfMonth().getDifference(inLuguLake));
+
         /*Date badDate = new Date(2013, 1, 6);
         System.out.println(badDate);*/
     }
