@@ -38,7 +38,16 @@ public class JodaTimeDemo {
         System.out.println(specialFeb.toString());
 
         /**
-         * 某一日期45天之后的下个月当日
+         * 某一日期45天之后的下个月当日所在的周的最后一天
+         * 如果设置为2015年则会抛出 org.joda.time.IllegalFieldValueException
          */
+        try {
+            DateTime complexTrial = new DateTime(2016, 2, 29, 12, 35, 23);
+            String complexTrialStr = complexTrial.plusDays(45).plusMonths(1).
+                    dayOfWeek().withMaximumValue().toString("yyyy-MM-dd HH:mm:ss");
+            System.out.println(complexTrialStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
