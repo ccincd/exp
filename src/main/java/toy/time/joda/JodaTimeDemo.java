@@ -1,8 +1,6 @@
 package toy.time.joda;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
+import org.joda.time.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -111,7 +109,19 @@ public class JodaTimeDemo {
          * Interval：这个类表示一个特定的时间跨度，将使用一个明确的时刻界定这段时间跨度的范围。Interval 为半开 区间，
          * 这表示由 Interval 封装的时间跨度包括这段时间的起始时刻，但是不包含结束时刻。
          */
-        //
+        DateTime start = new DateTime(2011, 2, 26, 21, 35);
+        DateTime end = new DateTime(2015, 7, 1, 8, 45);
+        Duration duration = new Duration(start, end);
+        Period period = new Period(start, end);
+        Interval interval = new Interval(start, end);
+
+        System.out.println(interval.contains(new DateTime(2012, 5, 20, 15, 35)));
+        System.out.println(duration.getMillis());
+
+        System.out.println(period.getYears());
+        System.out.println(period.getDays());
+        System.out.println(period.getMillis());
+        // System.out.println(period.get(DurationFieldType.days()));
 
         /**
          * 计算上个月的最后一天
