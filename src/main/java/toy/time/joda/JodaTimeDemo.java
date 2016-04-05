@@ -133,10 +133,20 @@ public class JodaTimeDemo {
         System.out.println(firstTuesdayInNovember);
 
         /**
+         * 这个月的最后一个星期二
+         */
+        LocalDate nowLocalDate = new LocalDate(nowDate);
+        System.out.println(nowLocalDate.dayOfMonth().withMaximumValue().
+                minusDays(1).dayOfWeek().setCopy(2).toString(DAY_FORMAT));
+
+        /**
          * 五年后第二个月的最后一天
          */
         LocalDate complexCalc = inLuguLakeLocal.plusYears(5).monthOfYear().setCopy(2).
                 dayOfMonth().withMaximumValue();
         System.out.println(complexCalc);
+
+        /*Date badDate = new Date(2013, 1, 6);
+        System.out.println(badDate);*/
     }
 }
