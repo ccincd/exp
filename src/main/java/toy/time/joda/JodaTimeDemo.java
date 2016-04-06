@@ -139,7 +139,7 @@ public class JodaTimeDemo {
         LocalDate inLuguLakeLocal = new LocalDate("2015-01-01");
         LocalDate firstTuesdayInNovember = inLuguLakeLocal.monthOfYear().setCopy(11).
                 dayOfMonth().withMinimumValue().
-                plusDays(6).dayOfWeek().setCopy(1).plusDays(1);
+                plusDays(5).dayOfWeek().setCopy(1).plusDays(1);
         System.out.println(firstTuesdayInNovember);
 
         /**
@@ -157,7 +157,7 @@ public class JodaTimeDemo {
         System.out.println(complexCalc);
 
         /**
-         * 本月的第一天的凌晨三点进行批处理任务
+         * 今天凌晨三点进行批处理任务
          */
         System.out.println(nowDateTime.withTimeAtStartOfDay().plusHours(3).toDate());
 
