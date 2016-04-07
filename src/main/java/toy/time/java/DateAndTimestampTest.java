@@ -3,6 +3,7 @@
  */
 package toy.time.java;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.sql.Timestamp;
@@ -16,8 +17,12 @@ public class DateAndTimestampTest {
 
     public static void main(String[] args) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
         System.out.println(timestamp);
         Date date = DateUtils.truncate(timestamp, Calendar.MILLISECOND);
         System.out.println(date);
+
+        String dateStr = DateFormatUtils.format(timestamp, "yyyy-MM-dd");
+        System.out.println(dateStr);
     }
 }
