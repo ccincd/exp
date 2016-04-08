@@ -1,0 +1,12 @@
+@startuml
+(*)  --> "check input"
+If "input is verbose" then
+--> [Yes] "turn on verbosity" as tov
+--> "run command"
+else
+--> "run command"
+Endif
+-->(*)
+
+tov -down-> "use variable"
+@enduml
