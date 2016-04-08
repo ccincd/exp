@@ -1,0 +1,6 @@
+@startuml
+(*top) -right-> "right"
+-down-> "down"
+-left-> "left"
+-up-> (*)
+@enduml
