@@ -1,3 +1,6 @@
 @startuml
-version
+If (Hello) then
+--> [Yse] "hi"
+else
+--> [No] "there"
 @enduml
