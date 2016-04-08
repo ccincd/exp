@@ -5,8 +5,10 @@ If "input is verbose" then
 --> "run command"
 else
 --> "run command"
+-down-> ===bar===
 Endif
 -->(*)
 
 tov -down-> "use variable"
+-down-> ===bar===
 @enduml
