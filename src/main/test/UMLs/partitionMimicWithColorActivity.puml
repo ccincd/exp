@@ -1,0 +1,34 @@
+@startuml
+partition Conductor {
+    (*) -down-> "Climbs on Platform"
+    -down-> === joinOne ===
+    -down-> Bows
+    -down-> === joinTwo ===
+    -down-> "WavesArmes" as wa
+}
+
+partition Audience LightSkyBlue {
+    === joinOne === -> "Applauds"
+    -> === joinTwo ===
+}
+
+partition Orchestra #CCCCEE {
+    wa -down-> "Introduction"
+    -down-> "Play music"
+}
+
+partition 浅蓝色 LightBlue {
+}
+
+partition 浅粉色 LightPink {
+}
+
+partition 兰花的紫色 Orchid {
+}
+
+partition 苍白的紫罗兰红色 PaleVioletRed {
+}
+
+partition 青色 Cyan {
+}
+@enduml
