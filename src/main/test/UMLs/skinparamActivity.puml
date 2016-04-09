@@ -1,4 +1,6 @@
 @startuml
+'this is comment
+skinparam activityShape octagon
 skinparam backgroundColor #AAFFFF
 skinparam activity {
     StartColor Red
