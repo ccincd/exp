@@ -1,0 +1,7 @@
+@startuml
+(*) -right-> "<size:20>hi, there</size>\n<b>glad</b> to see <color:red>u</color>
+my name is <i>chi chen</i>" as greeting
+-down-> (*)
+
+greeting -up-> "hello"
+@enduml
