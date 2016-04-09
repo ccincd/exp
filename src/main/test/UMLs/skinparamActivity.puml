@@ -1,0 +1,19 @@
+@startuml
+skinparam backgroundColor #AAFFFF
+skinparam activity {
+    StartColor Red
+    EndColor Silver
+    BarColor SaddleBrown
+    BackgroundColor Peru
+    BackgroundColor<<begin>> Olive
+    BorderColor Black
+    FontName Impact
+}
+
+(*)  --> "Climbs on Platform" <<begin>>
+--> === s1 ===
+--> Bows
+--> === s2 ===
+--> WavesArmes
+-->(*)
+@enduml
