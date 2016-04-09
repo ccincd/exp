@@ -1,0 +1,15 @@
+@startuml
+note top: this is a node of starting point(*)
+-down-> "some activity"
+note right
+multiple lines note
+on the right
+of some activity
+end note
+-down-> (*)
+note left
+multiple lines
+left note
+of end point
+end note
+@enduml
