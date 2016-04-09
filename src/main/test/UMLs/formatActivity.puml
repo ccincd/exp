@@ -3,5 +3,5 @@
 my name is <i>chi chen</i>" as greeting
 -down-> (*)
 
-greeting -up-> "hello"
+greeting -up-> "hello\n <img:qunar.jpg>"
 @enduml
