@@ -1,7 +1,9 @@
 @startuml
+note right: 参照Thread.State
 (*) -down-> "NEW"
-note right: 新建线程，尚未执行start()
+note right: 新建线程\n尚未执行start()
 -down-> "RUNNABLE" as run
+note top: 接受JVM调度\n等待CPU分片资源等
 -up-> [执行完毕/未捕获异常] "TERMINATED" as tm
 
 run -left-> [未进入同步方法/代码块] "BLOCKED" as bk
