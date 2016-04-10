@@ -1,0 +1,16 @@
+@startuml
+(*) -down-> "NEW"
+note right: 新建线程，尚未执行start()
+-down-> "RUNNABLE" as run
+-up-> [执行完毕/未捕获异常] "TERMINATED" as tm
+
+run -left-> [未进入同步方法/代码块] "BLOCKED" as bk
+run -down-> [thread.join()\nlockObj.wait()] "WAITING" as wt
+run -right-> [Thread.sleep(long)\nthread.join(long)\nlockObj.wait(long)] "TIMED_WAITING" as twt
+
+bk --> [获取锁] run
+wt --> [join线程执行完\nwait的线程执行notify或notifyAll] run
+twt --> [时间结束] run
+
+tm -up-> (*)
+@enduml
