@@ -1,6 +1,8 @@
 package toy.basic;
 
 /**
+ * Basic Bean
+ *
  * Created by cc on 16/3/7.
  */
 public class Person {
@@ -50,10 +52,10 @@ public class Person {
         this.name = name;
     }
 
-    @Override public String toString() {
+    /*@Override public String toString() {
         return "Person{" +
                 "age=" + age +
                 ", name='" + name + '\'' +
                 '}';
-    }
+    }*/
 }
