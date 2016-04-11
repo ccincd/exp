@@ -1,6 +1,10 @@
 package toy.test.mySql.dao;
 
+import common.entity.SmallToyEntity;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * testDataSourceDao
@@ -18,4 +22,12 @@ public interface TestMySqlDataSourceDao {
      * @return 记录数
      */
     int countSmallToys();
+
+    /**
+     * 测试rowBounds
+     *
+     * @param rowBounds 分页条件
+     * @return 分页后的结果
+     */
+    List<SmallToyEntity> testRowBounds(RowBounds rowBounds);
 }

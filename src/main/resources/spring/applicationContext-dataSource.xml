@@ -62,7 +62,7 @@
 
     <!-- MyBatis MySQL MapperScannerConfigurer -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="test.mySql.dao"/>
+        <property name="basePackage" value="test.mySql.dao, toy.test.mySql.dao"/>
         <property name="sqlSessionFactoryBeanName" value="mySqlSqlSessionFactory"/>
     </bean>
 

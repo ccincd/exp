@@ -2,12 +2,16 @@ package test.mySql.dao;
 
 import javax.annotation.Resource;
 
+import common.entity.SmallToyEntity;
+import org.apache.ibatis.session.RowBounds;
 import org.junit.Assert;
 import org.junit.Test;
 
 import toy.test.mySql.dao.TestMySqlDataSourceDao;
 
 import common.TxRollBackBaseTest;
+
+import java.util.List;
 
 /**
  * DataSourceTest
@@ -29,5 +33,14 @@ public class MySqlDataSourceTest extends TxRollBackBaseTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testRowBounds() {
+        // offside, limit (pageSize)
+        RowBounds rowBounds = new RowBounds(0, 3);
+
+        List<SmallToyEntity> smallToyEntities = dataSourceDao.testRowBounds(rowBounds);
+        System.out.println(smallToyEntities);
     }
 }

@@ -4,7 +4,15 @@
 
 <mapper namespace="toy.test.mySql.dao.TestMySqlDataSourceDao">
     <select id="countSmallToys" resultType="int">
-        SELECT COUNT(*)
-        FROM small_toy
+        select count(*)
+        from small_toy
+    </select>
+
+    <resultMap id="testRowBoundsResultMap" type="common.entity.SmallToyEntity">
+        <result column="provider_id" property="providerId"/>
+    </resultMap>
+
+    <select id="testRowBounds" resultMap="testRowBoundsResultMap">
+        select * from small_toy
     </select>
 </mapper>
