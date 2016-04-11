@@ -15,4 +15,8 @@
     <select id="testRowBounds" resultMap="testRowBoundsResultMap">
         select * from small_toy
     </select>
+
+    <select id="testZeroTime" resultType="map">
+        select * from small_toy
+    </select>
 </mapper>

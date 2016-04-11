@@ -12,6 +12,7 @@ import toy.test.mySql.dao.TestMySqlDataSourceDao;
 import common.TxRollBackBaseTest;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * DataSourceTest
@@ -42,5 +43,16 @@ public class MySqlDataSourceTest extends TxRollBackBaseTest {
 
         List<SmallToyEntity> smallToyEntities = dataSourceDao.testRowBounds(rowBounds);
         System.out.println(smallToyEntities);
+    }
+
+    /**
+     * “0000-00-00 00:00:00”在mysql中是作为一个特殊值存在的，
+     * 但是在Java中，java.sql.Date会被视为不合法的值，被JVM认为格式不正确
+     */
+    @Test
+    public void testZeroDate() {
+        List<Map<String, Object>> result = dataSourceDao.testZeroTime();
+
+        System.out.println(result);
     }
 }

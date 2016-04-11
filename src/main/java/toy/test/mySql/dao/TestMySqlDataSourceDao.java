@@ -5,6 +5,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * testDataSourceDao
@@ -30,4 +31,11 @@ public interface TestMySqlDataSourceDao {
      * @return 分页后的结果
      */
     List<SmallToyEntity> testRowBounds(RowBounds rowBounds);
+
+    /**
+     * 测试默认时间以Map的形式取出来是否为null
+     *
+     * @return Map
+     */
+    List<Map<String, Object>> testZeroTime();
 }
