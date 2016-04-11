@@ -9,6 +9,8 @@ import toy.basic.Person;
  * this指针指向的是内部类对象
  * 内部类可以通过OuterAndNormalInnerClass.this的方式访问外部类的对象
  *
+ * 如果一个内部类不依赖于其外部类的实例变量，或与实例变量无关，则选择应用静态内部类
+ *
  * Created by cc on 16/4/11.
  */
 public class OuterAndNormalInnerClass {
