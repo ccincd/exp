@@ -19,4 +19,8 @@
     <select id="testZeroTime" resultType="map">
         select * from small_toy
     </select>
+    
+    <insert id="insertSmallToy" parameterType="common.entity.SmallToyEntity">
+        insert into small_toy (`name`, provider_id) values (#{name}, #{providerId});
+    </insert>
 </mapper>

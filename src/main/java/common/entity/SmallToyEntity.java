@@ -5,6 +5,8 @@ package common.entity;
 
 import common.base.PrintableBean;
 
+import java.util.Date;
+
 /**
  * @author chichen  Date: 16-4-11 Time: 上午10:35
  */
@@ -24,6 +26,16 @@ public class SmallToyEntity extends PrintableBean {
      * 供应商id
      */
     private int providerId;
+
+    /**
+     * 上次拜访时间
+     */
+    private Date lastVisitTime;
+
+    public SmallToyEntity(String name, int providerId) {
+        this.name = name;
+        this.providerId = providerId;
+    }
 
     public int getId() {
         return id;
@@ -47,5 +59,13 @@ public class SmallToyEntity extends PrintableBean {
 
     public void setProviderId(int providerId) {
         this.providerId = providerId;
+    }
+
+    public Date getLastVisitTime() {
+        return lastVisitTime;
+    }
+
+    public void setLastVisitTime(Date lastVisitTime) {
+        this.lastVisitTime = lastVisitTime;
     }
 }

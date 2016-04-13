@@ -38,4 +38,11 @@ public interface TestMySqlDataSourceDao {
      * @return Map
      */
     List<Map<String, Object>> testZeroTime();
+
+    /**
+     * 插入记录
+     *
+     * @param smallToyEntity SmallToyEntity
+     */
+    void insertSmallToy(SmallToyEntity smallToyEntity);
 }

@@ -55,4 +55,14 @@ public class MySqlDataSourceTest extends TxRollBackBaseTest {
 
         System.out.println(result);
     }
+
+    @Test
+    public void testNullDate() {
+        try {
+            SmallToyEntity smallToyEntity = new SmallToyEntity("TestNull", 19);
+            dataSourceDao.insertSmallToy(smallToyEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
