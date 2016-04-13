@@ -2,6 +2,7 @@ package test.mySql.dao;
 
 import javax.annotation.Resource;
 
+import common.TxNotRollBackBaseTest;
 import common.entity.SmallToyEntity;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Assert;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @date 16-2-2
  * @time 下午3:25
  */
-public class MySqlDataSourceTest extends TxRollBackBaseTest {
+public class MySqlDataSourceTest extends TxNotRollBackBaseTest {
 
     @Resource
     TestMySqlDataSourceDao dataSourceDao;
@@ -59,7 +60,10 @@ public class MySqlDataSourceTest extends TxRollBackBaseTest {
     @Test
     public void testNullDate() {
         try {
-            SmallToyEntity smallToyEntity = new SmallToyEntity("TestNull", 19);
+            SmallToyEntity smallToyEntity = new SmallToyEntity();
+            smallToyEntity.setProviderId(21);
+            smallToyEntity.setName("ReallyShouldFail");
+            smallToyEntity.setLastVisitTime(null);
             dataSourceDao.insertSmallToy(smallToyEntity);
         } catch (Exception e) {
             e.printStackTrace();

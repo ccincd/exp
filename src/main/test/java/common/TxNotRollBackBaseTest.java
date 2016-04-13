@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @time 下午3:32
  */
 @Transactional("txManager")
-@Rollback(true)
+@Rollback(false)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TxNotRollBackBaseTest {

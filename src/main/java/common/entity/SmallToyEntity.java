@@ -32,11 +32,6 @@ public class SmallToyEntity extends PrintableBean {
      */
     private Date lastVisitTime;
 
-    public SmallToyEntity(String name, int providerId) {
-        this.name = name;
-        this.providerId = providerId;
-    }
-
     public int getId() {
         return id;
     }

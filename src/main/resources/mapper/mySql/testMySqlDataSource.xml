@@ -21,6 +21,15 @@
     </select>
     
     <insert id="insertSmallToy" parameterType="common.entity.SmallToyEntity">
-        insert into small_toy (`name`, provider_id) values (#{name}, #{providerId});
+        insert into small_toy (`name`, provider_id
+        <if test="lastVisitTime != null">
+            , last_visit_date
+        </if>
+        )
+        values (#{name}, #{providerId}
+        <if test="lastVisitTime != null">
+            , #{lastVisitTime}
+        </if>
+        );
     </insert>
 </mapper>
