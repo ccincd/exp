@@ -27,4 +27,8 @@
         <setting name="defaultStatementTimeout" value="600"/>
     </settings>
 
+    <plugins>
+        <plugin interceptor="batis.StatementHandlerInterceptor"/>
+    </plugins>
+
 </configuration>
