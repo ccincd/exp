@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 
 /**
  * 流式读取DB
+ * <a href="http://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-implementation-notes.html">ResultSet流式说明</a>
  *
  * @author chichen  Date: 16-4-20 Time: 下午5:12
  */
