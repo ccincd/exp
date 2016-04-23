@@ -1,9 +1,12 @@
 package concurrency.java.synchronizers;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.concurrent.CountDownLatch;
 
 /**
  * 测试门闩
+ * 门闩是一种Synchronize(r) 其内部维护状态 向外提供方法
  *
  * Created by cc on 16/4/23.
  */
@@ -12,8 +15,10 @@ public class TestLatch {
     private static final Integer WORKERS_NUM = 5;
 
     public static void main(String[] args) {
-        final CountDownLatch prerequisite = new CountDownLatch(1);
+        CountDownLatch prerequisite = new CountDownLatch(1);
         CountDownLatch postRequisite = new CountDownLatch(WORKERS_NUM);
+
+        CountDownLatch timeMeasureLatch = new CountDownLatch(1);
 
         Thread preWorker = new Initializer(prerequisite);
         preWorker.start();
@@ -25,12 +30,19 @@ public class TestLatch {
 
         Thread[] workers = new WorkerThread[WORKERS_NUM];
         for (int i = 0; i < WORKERS_NUM; i++) {
-            workers[i] = new WorkerThread(postRequisite);
+            workers[i] = new WorkerThread(postRequisite, timeMeasureLatch);
             workers[i].start();
         }
 
         try {
+            StopWatch stopWatch = new StopWatch();
+
+            stopWatch.start();
+            timeMeasureLatch.countDown();
             postRequisite.await();
+            stopWatch.stop();
+
+            System.out.println(stopWatch.toString());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

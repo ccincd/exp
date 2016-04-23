@@ -12,11 +12,20 @@ public class WorkerThread extends Thread {
 
     private CountDownLatch countDownLatch;
 
-    public WorkerThread(CountDownLatch countDownLatch) {
+    private CountDownLatch timeMeasureLatch;
+
+    public WorkerThread(CountDownLatch countDownLatch, CountDownLatch timeMeasureLatch) {
         this.countDownLatch = countDownLatch;
+        this.timeMeasureLatch = timeMeasureLatch;
     }
 
     @Override public void run() {
+        try {
+            timeMeasureLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // do some stuff
         long sum = 0L;
         Random random = new Random();
