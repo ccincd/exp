@@ -13,8 +13,18 @@ public class CalculationDenseCallable implements Callable<Integer> {
 
     private static final int MAX_RANGE = 10000000;
 
+    private boolean isBadCase;
+
+    public CalculationDenseCallable(boolean isBadCase) {
+        this.isBadCase = isBadCase;
+    }
+
     @Override
     public Integer call() throws Exception {
+        if (isBadCase) {
+            throw new MyCheckedException();
+        }
+
         int counter = 0;
         Random random = new Random();
         while (random.nextInt(MAX_RANGE) != 9527) {

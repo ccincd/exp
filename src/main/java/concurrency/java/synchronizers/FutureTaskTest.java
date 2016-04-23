@@ -17,13 +17,13 @@ public class FutureTaskTest {
         /**
          * 使用Callable和Future获取结果
          */
-        Future<Integer> future = executorService.submit(new CalculationDenseCallable());
+        Future<Integer> future = executorService.submit(new CalculationDenseCallable(false));
 
         /**
          * 使用Callable和FutureTask获取结果
          * executorService.submit(futureTask)后不需要定义变量
          */
-        FutureTask<Integer> futureTask = new FutureTask<>(new CalculationDenseCallable());
+        FutureTask<Integer> futureTask = new FutureTask<>(new CalculationDenseCallable(true));
         executorService.submit(futureTask);
 
         /**
@@ -49,11 +49,18 @@ public class FutureTaskTest {
         }
 
         /**
-         * 使用FutureTask获取结果
+         * 使用FutureTask获取结果 构造函数或静态构造区里面不适宜新建线程
          */
         try {
             System.out.println(futureTask.get() + " times to find 9527 again");
-        } catch (Exception e) {
+        } catch (ExecutionException e) {// worker线程里封装的异常会被封装成ExecutionException抛出
+            Throwable throwable = e.getCause();
+            if (throwable instanceof MyCheckedException) {
+                System.out.println("caught MyCheckedException");
+            }
+            // e.printStackTrace();
+        } catch (InterruptedException e) {
+            System.out.println("interrupted...");
             e.printStackTrace();
         }
 
