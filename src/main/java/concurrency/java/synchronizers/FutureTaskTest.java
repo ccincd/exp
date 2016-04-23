@@ -5,6 +5,7 @@ import java.util.concurrent.*;
 /**
  * FutureTask表现上也像一种门闩
  * 使用ExecutorService之后记得要执行shutdown操作
+ * 有三种完成情况 分别是 正常完成 抛出异常 以及被取消
  *
  * Created by cc on 16/4/23.
  */
