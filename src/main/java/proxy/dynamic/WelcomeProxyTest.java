@@ -8,6 +8,8 @@ import java.lang.reflect.Proxy;
 
 /**
  * 静态代理表示类在编译阶段就已经存在
+ * 这种动态代理方式需要被代理类实现某个接口
+ * 没有实现接口的类可以使用CGLib来实现动态代理
  *
  * @author chichen  Date: 16-4-25 Time: 下午3:00
  */
