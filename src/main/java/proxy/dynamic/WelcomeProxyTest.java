@@ -7,6 +7,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 /**
+ * 静态代理表示类在编译阶段就已经存在
+ *
  * @author chichen  Date: 16-4-25 Time: 下午3:00
  */
 public class WelcomeProxyTest {
