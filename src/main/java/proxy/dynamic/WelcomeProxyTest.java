@@ -11,6 +11,8 @@ import java.lang.reflect.Proxy;
  * 这种动态代理方式需要被代理类实现某个接口
  * 没有实现接口的类可以使用CGLib来实现动态代理
  *
+ * 代理隐藏了实际客户对象，客户不知道它是与代理打交道还是与实际对象打交道
+ *
  * @author chichen  Date: 16-4-25 Time: 下午3:00
  */
 public class WelcomeProxyTest {
