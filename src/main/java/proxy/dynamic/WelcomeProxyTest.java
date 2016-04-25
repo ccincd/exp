@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) 2016 Qunar.com. All Rights Reserved.
+ */
+package proxy.dynamic;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+
+/**
+ * @author chichen  Date: 16-4-25 Time: 下午3:00
+ */
+public class WelcomeProxyTest {
+
+    public static void main(String[] args) {
+        WelcomeRobot welcomeRobot = new WelcomeRobot();
+        InvocationHandler invocationHandler = new WelcomeInvocationHandler(welcomeRobot);
+
+        /**
+         * 创建动态代理类
+         * 需要被代理类的ClassLoader，Interfaces以及InvocationHandler接口的实现类
+         */
+        WelcomeInterface proxy = (WelcomeInterface) Proxy.newProxyInstance(
+                welcomeRobot.getClass().getClassLoader(),
+                welcomeRobot.getClass().getInterfaces(),
+                invocationHandler);
+
+        proxy.sayHello();
+    }
+}
