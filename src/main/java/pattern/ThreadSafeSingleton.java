@@ -18,6 +18,7 @@ public class ThreadSafeSingleton {
         if (safeSingleton == null) {
             /**
              * 在if判空语句里面添加锁,这样只有在创建的时候才会锁定 如果在方法体处加锁,则每次获取对象都会进行锁定,效率较低
+             * 在synchronized中再次判断safeSingleton是否为null，是为了防止多次创建对象
              */
             synchronized (ThreadSafeSingleton.class) {
                 if (safeSingleton == null) {
