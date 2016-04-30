@@ -14,14 +14,22 @@ import java.util.List;
 public class HeapOOM {
 
     static class OOMObject {
-        // Empty
+
+        private int age;
+
+        private String name;
+
+        public OOMObject(int age, String name) {
+            this.age = age;
+            this.name = name;
+        }
     }
 
     public static void main(String[] args) {
         List<OOMObject> oomObjects = Lists.newArrayList();
 
         while (true) {
-            oomObjects.add(new OOMObject());
+            oomObjects.add(new OOMObject(1, "hi"));
         }
     }
 }
