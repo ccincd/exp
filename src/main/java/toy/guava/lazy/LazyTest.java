@@ -1,10 +1,9 @@
 package toy.guava.lazy;
 
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.codehaus.jackson.map.ObjectMapper;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -25,13 +24,26 @@ public class LazyTest {
             }
         });
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        // 做一份拷贝来让懒加载立即生效
+        // Lists.newArrayList(Lists.transform(...));
+
+        try {
+            /**
+             * ImmutableList.copyOf makes a copy unless it is copying a list that is already an ImmutableList.
+             */
+            List<Integer> immutableCopyOfDividedNumbers = ImmutableList.copyOf(dividedNumbers);
+            System.out.println(immutableCopyOfDividedNumbers);
+        } catch (Exception e) {
+            System.out.println("hi, there");
+        }
+
+        /*ObjectMapper objectMapper = new ObjectMapper();
         try {
             String dividedNumbersStr = objectMapper.writeValueAsString(dividedNumbers);
             System.out.println(dividedNumbersStr);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         /**
          * 遍历会执行apply
