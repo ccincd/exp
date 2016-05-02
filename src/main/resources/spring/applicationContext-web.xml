@@ -20,9 +20,9 @@
     <task:annotation-driven /> is required for @Scheduled et al-->
     <context:annotation-config/>
 
-    <context:component-scan base-package="toy.aspect"/>
-    <context:component-scan base-package="toy.anno"/>
+    <context:component-scan base-package="toy"/>
     <context:component-scan base-package="cache"/>
+    <context:component-scan base-package="controller"/>
 
     <context:property-placeholder location="classpath:config/*.properties"/>
 
