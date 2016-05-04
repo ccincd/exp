@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 素数产生器 使用一个flag来标识结束
+ * 使用flag的方式在阻塞的场景下可能会无法结束
  *
  * Created by cc on 16/5/4.
  */
