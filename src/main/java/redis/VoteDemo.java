@@ -3,6 +3,7 @@ package redis;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.ZParams;
 
 import java.util.List;
 import java.util.Map;
@@ -102,12 +103,13 @@ public class VoteDemo {
     /**
      * 分页获取高评分文章信息
      */
-    public List<Map<String, String>> getTopScoreArticlesByPage(Jedis jedis, int pageNumber, int pageSize) {
+    public List<Map<String, String>> getTopScoreArticlesByPage(
+            Jedis jedis, int pageNumber, int pageSize, String articleSet) {
         int startPos = pageNumber * pageSize;
         int endPos = startPos + pageSize;
         List<Map<String, String>> articleInfoList = Lists.newArrayList();
 
-        Set<String> topScoreArticleIds = jedis.zrevrange(SCORE_KEYWORD, startPos, endPos);
+        Set<String> topScoreArticleIds = jedis.zrevrange(articleSet, startPos, endPos);
         for (String articleId : topScoreArticleIds) {
             Map<String, String> articleInfo = jedis.hgetAll(articleId);
             // 添加文章id信息
@@ -116,5 +118,40 @@ public class VoteDemo {
         }
 
         return articleInfoList;
+    }
+
+    /**
+     * 获取指定分组的高评分文章信息
+     */
+    public List<Map<String, String>> getTopScoreArticlesByGroupAndPage(
+            Jedis jedis, String groupId, int pageNumber, int pageSize) {
+        String combinedKey = SCORE_KEYWORD + groupId;
+        if (!jedis.exists(combinedKey)) {
+            ZParams zParams = new ZParams();
+            zParams.aggregate(ZParams.Aggregate.MAX);
+
+            jedis.zinterstore(combinedKey, zParams, SCORE_KEYWORD, groupId);
+            jedis.expire(combinedKey, 60);
+        }
+
+        return getTopScoreArticlesByPage(jedis, pageNumber, pageSize, combinedKey);
+    }
+
+    /**
+     * 添加文章到群组
+     */
+    public void addAnArticleToGroup(Jedis jedis, String articleId, List<String> groupIdList) {
+        for (String groupId : groupIdList) {
+            jedis.sadd(groupId, articleId);
+        }
+    }
+
+    /**
+     * 从群组中删除文章
+     */
+    public void removeAnArticleFromGroup(Jedis jedis, String articleId, List<String> groupIdList) {
+        for (String groupId : groupIdList) {
+            jedis.srem(groupId, articleId);
+        }
     }
 }
