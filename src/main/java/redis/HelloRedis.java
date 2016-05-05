@@ -4,6 +4,7 @@ import redis.clients.jedis.Jedis;
 
 /**
  * First Redis Demo
+ * 清空Redis数据 flushdb / flushall
  *
  * Created by cc on 16/5/5.
  */
