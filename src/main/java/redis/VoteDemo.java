@@ -61,7 +61,7 @@ public class VoteDemo {
         if (!hasVoted) {
             jedis.sadd(VOTED_KEYWORD + strippedArticleId, userId);
             jedis.zincrby(SCORE_KEYWORD, VOTE_SCORE, articleId);
-            jedis.hincrBy(articleId, VOTE_COUNT_FIELD, VOTE_SCORE);
+            jedis.hincrBy(articleId, VOTE_COUNT_FIELD, 1);
         }
     }
 
@@ -104,12 +104,13 @@ public class VoteDemo {
      * 分页获取高评分文章信息
      */
     public List<Map<String, String>> getTopScoreArticlesByPage(
-            Jedis jedis, int pageNumber, int pageSize, String articleSet) {
+            Jedis jedis, int pageNumber, int pageSize, String articleScoreSet) {
         int startPos = pageNumber * pageSize;
+        // 包含endPos
         int endPos = startPos + pageSize;
         List<Map<String, String>> articleInfoList = Lists.newArrayList();
 
-        Set<String> topScoreArticleIds = jedis.zrevrange(articleSet, startPos, endPos);
+        Set<String> topScoreArticleIds = jedis.zrevrange(articleScoreSet, startPos, endPos);
         for (String articleId : topScoreArticleIds) {
             Map<String, String> articleInfo = jedis.hgetAll(articleId);
             // 添加文章id信息
@@ -153,5 +154,41 @@ public class VoteDemo {
         for (String groupId : groupIdList) {
             jedis.srem(groupId, articleId);
         }
+    }
+
+    public static void main(String[] args) {
+        VoteDemo voteDemo = new VoteDemo();
+
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
+        voteDemo.postAnArticle(jedis, "Chi Chen", "www.xxx.com/article/305", "learn redis from scratch");
+        voteDemo.postAnArticle(jedis, "Josiah", "www.xxx.com/article/306", "redis in action v1");
+        voteDemo.postAnArticle(jedis, "Josiah", "www.xxx.com/article/307", "redis in action v2");
+        voteDemo.postAnArticle(jedis, "Josiah", "www.xxx.com/article/308", "redis in action v3");
+        voteDemo.postAnArticle(jedis, "Josiah", "www.xxx.com/article/309", "redis in action v4");
+
+        voteDemo.voteAnArticle(jedis, "stranger one", ARTICLE_KEYWORD + 1);
+        voteDemo.voteAnArticle(jedis, "stranger two", ARTICLE_KEYWORD + 1);
+        voteDemo.voteAnArticle(jedis, "stranger three", ARTICLE_KEYWORD + 1);
+
+        voteDemo.addAnArticleToGroup(jedis, ARTICLE_KEYWORD + 1, Lists.newArrayList("scratch"));
+
+        voteDemo.voteAnArticle(jedis, "stranger two", ARTICLE_KEYWORD + 2);
+        voteDemo.voteAnArticle(jedis, "stranger three", ARTICLE_KEYWORD + 2);
+
+        voteDemo.addAnArticleToGroup(jedis, ARTICLE_KEYWORD + 2, Lists.newArrayList("scratch"));
+
+        voteDemo.voteAnArticle(jedis, "stranger one", ARTICLE_KEYWORD + 3);
+        voteDemo.voteAnArticle(jedis, "stranger two", ARTICLE_KEYWORD + 3);
+        voteDemo.voteAnArticle(jedis, "stranger three", ARTICLE_KEYWORD + 3);
+        voteDemo.voteAnArticle(jedis, "stranger four", ARTICLE_KEYWORD + 3);
+
+        voteDemo.addAnArticleToGroup(jedis, ARTICLE_KEYWORD + 3, Lists.newArrayList("advanced"));
+
+        List<Map<String, String>> highScores = voteDemo.getTopScoreArticlesByPage(jedis, 0, 3, SCORE_KEYWORD);
+        System.out.println(highScores);
+
+        List<Map<String, String>> highScoresOfSpecifiedGroup =
+                voteDemo.getTopScoreArticlesByGroupAndPage(jedis, "scratch", 0, 3);
+        System.out.println(highScoresOfSpecifiedGroup);
     }
 }
