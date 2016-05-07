@@ -3,6 +3,10 @@
  */
 package proxy.dynamic;
 
+import sun.misc.ProxyGenerator;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
@@ -17,6 +21,30 @@ import java.lang.reflect.Proxy;
  */
 public class WelcomeProxyTest {
 
+    public static void writeProxyClassToHardDisk(String path) {
+
+        // 获取代理类的字节码
+        byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0", WelcomeInterface.class.getInterfaces());
+
+        FileOutputStream out = null;
+
+        try {
+            out = new FileOutputStream(path);
+            out.write(classFile);
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         WelcomeRobot welcomeRobot = new WelcomeRobot();
         InvocationHandler invocationHandler = new WelcomeInvocationHandler(welcomeRobot);
@@ -29,6 +57,11 @@ public class WelcomeProxyTest {
                 welcomeRobot.getClass().getClassLoader(),
                 welcomeRobot.getClass().getInterfaces(),
                 invocationHandler);
+
+        /**
+         * Proxy0.class名好像不对
+         */
+        writeProxyClassToHardDisk("$Proxy0.class");
 
         proxy.sayHello();
     }
