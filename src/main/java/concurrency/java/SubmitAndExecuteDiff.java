@@ -1,5 +1,6 @@
 package concurrency.java;
 
+import javax.validation.constraints.NotNull;
 import java.util.concurrent.*;
 
 /**
@@ -34,6 +35,7 @@ public class SubmitAndExecuteDiff {
         }
     }
 
+    @SuppressWarnings("all")
     static class HandlerThreadFactory implements ThreadFactory {
         @Override public Thread newThread(Runnable r) {
             Thread thread = new Thread(r);
