@@ -24,6 +24,9 @@ public class SubmitAndExecuteDiff {
         }
     }
 
+    /**
+     * UncaughtExceptionHandler是一个接口
+     */
     static class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
         @Override public void uncaughtException(Thread t, Throwable e) {
             System.out.println(t.getName() + " produced an exception!");
