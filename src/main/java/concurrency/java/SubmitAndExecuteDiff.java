@@ -1,6 +1,5 @@
 package concurrency.java;
 
-import javax.validation.constraints.NotNull;
 import java.util.concurrent.*;
 
 /**
