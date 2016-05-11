@@ -4,6 +4,11 @@
 package concurrency.java.lock.deadlock;
 
 /**
+ * 查询Thread Dump中死锁的步骤
+ * 1 打开IDE的命令行
+ * 2 执行jps命令找到程序pid
+ * 3 执行jstack <pid>命令查看Dump信息
+ *
  * @author chichen  Date: 16-3-25 Time: 下午7:22
  */
 public class DeadLockDemoAndMultiThreadDebug {
