@@ -36,6 +36,8 @@ public class SleepAndWait {
                     try {
                         Thread.sleep(2000);
                         // 调用某个对象的wait()方法能让当前线程阻塞，并且当前线程必须拥有此对象的monitor（即锁）
+                        // 会释放SleepAndWait.class Monitor
+                        // 有两种方法可使线程进入Monitor的等待队列 一是去获取别的线程已经占有的锁 二是调用Monitor的wait方法
                         SleepAndWait.class.wait();
                         System.out.println("this will show after notify");
                     } catch (InterruptedException e) {

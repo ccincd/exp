@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2016 Qunar.com. All Rights Reserved.
  */
-package concurrency.java.deadlock;
+package concurrency.java.lock.deadlock;
 
 /**
  * @author chichen  Date: 16-3-25 Time: 下午7:22
