@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import controller.bean.User;
+import toy.test.mySql.dao.TestMySqlDataSourceDao;
+
+import javax.annotation.Resource;
 
 /**
  * ValidationController
@@ -21,6 +24,16 @@ import controller.bean.User;
 @Controller
 @RequestMapping("/test/validation")
 public class ValidationController {
+
+    /*@Resource
+    TestMySqlDataSourceDao mySqlDataSourceDao;
+
+    @RequestMapping(value = "testDaoInjection.json", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResult testDaoInjection() {
+        int toyNum = mySqlDataSourceDao.countSmallToys();
+        return ApiResult.succ(toyNum);
+    }*/
 
     /**
      * Validated是Spring的注解 Valid是javax的注解 这里一个@Valid的参数后必须紧挨着一个BindingResult参数，否则spring会在校验不通过时直接抛出异常

@@ -10,8 +10,6 @@ import org.junit.Test;
 
 import toy.test.mySql.dao.TestMySqlDataSourceDao;
 
-import common.TxRollBackBaseTest;
-
 import java.util.List;
 import java.util.Map;
 
