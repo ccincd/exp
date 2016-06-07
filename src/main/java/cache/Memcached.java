@@ -2,6 +2,7 @@ package cache;
 
 import java.io.IOException;
 
+import controller.ApiResult;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.MemcachedClientBuilder;
 import net.rubyeye.xmemcached.XMemcachedClientBuilder;
