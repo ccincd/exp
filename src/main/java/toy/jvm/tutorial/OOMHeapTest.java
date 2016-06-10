@@ -1,3 +1,4 @@
+/*
 package toy.jvm.tutorial;
 
 import java.util.Date;
@@ -19,4 +20,4 @@ public class OOMHeapTest {
             array[i]=p;
         }
     }
-}
+}*/

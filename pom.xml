@@ -45,7 +45,6 @@
     </properties>
 
     <dependencies>
-
         <!-- data sources start -->
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -201,11 +200,11 @@
         <!-- jdbc & connector end -->
 
         <!-- crate config start -->
-        <dependency>
+        <!--<dependency>
             <groupId>io.crate</groupId>
             <artifactId>crate-client</artifactId>
             <version>${crate.client.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>io.crate</groupId>
@@ -337,6 +336,21 @@
     </dependencies>
 
     <build>
-    <finalName>cc</finalName>
+        <finalName>cc</finalName>
+
+        <pluginManagement>
+            <plugins>
+                <!-- 显示指定编译时使用的JDK版本为1.7，此处的设置会影响IDEA的LanguageLevel -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

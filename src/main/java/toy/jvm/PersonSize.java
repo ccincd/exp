@@ -1,12 +1,15 @@
+/*
 package toy.jvm;
 
 import net.sourceforge.sizeof.SizeOf;
 
+*/
 /**
  * 查看类大小
  *
  * Created by cc on 16/4/30.
- */
+ *//*
+
 public class PersonSize {
 
     private int age;
@@ -27,3 +30,4 @@ public class PersonSize {
         // System.out.println(SizeOf.deepSizeOf(personSize));
     }
 }
+*/

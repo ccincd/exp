@@ -1,10 +1,10 @@
 package toy.jvm.tutorial;
 
-import net.sourceforge.sizeof.SizeOf;
+// import net.sourceforge.sizeof.SizeOf;
 
 public class Pilot{
 
-    String name;
+    /*String name;
     int age;
 
     public Pilot(String a, int b){
@@ -15,5 +15,5 @@ public class Pilot{
     public static void main(String[] args) {
         Pilot pilot = new Pilot("hi", 5);
         System.out.println(SizeOf.sizeOf(pilot));
-    }
+    }*/
 }

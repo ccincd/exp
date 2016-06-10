@@ -1,12 +1,15 @@
+/*
 package toy.jvm;
 
 import net.sourceforge.sizeof.SizeOf;
 
+*/
 /**
  * 查看数组大小
  *
  * Created by cc on 16/4/30.
- */
+ *//*
+
 public class ArraySize {
 
     private Integer[] integers = new Integer[3];
@@ -27,3 +30,4 @@ public class ArraySize {
         System.out.println(SizeOf.sizeOf(new int[2]));
     }
 }
+*/
