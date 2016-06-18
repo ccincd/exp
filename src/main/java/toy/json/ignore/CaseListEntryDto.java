@@ -54,7 +54,7 @@ public class CaseListEntryDto implements Serializable {
     /**
      * 地区码
      */
-    @JsonIgnore()
+    @JsonIgnore
     private Long areaId;
 
     /**
