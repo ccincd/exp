@@ -70,14 +70,19 @@
     </servlet>
 
     <!-- 页面请求 -->
-    <servlet-mapping>
+    <!--<servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>*.htm</url-pattern>
     </servlet-mapping>
-    <!-- Ajax请求 -->
+    &lt;!&ndash; Ajax请求 &ndash;&gt;
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>*.json</url-pattern>
+    </servlet-mapping>-->
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>
