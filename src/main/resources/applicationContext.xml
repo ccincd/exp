@@ -12,7 +12,17 @@
     4. Adds support for validating @Controller inputs with @Valid, if a JSR-303 Provider is on the classpath
     5. Adds support for support for reading and writing XML, if JAXB is on the classpath (HTTP message conversion with @RequestBody/@ResponseBody)
     6. Adds support for reading and writing JSON, if Jackson is o n the classpath (along the same lines as #5)-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="serializationInclusion" value="NON_NULL"/>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <import resource="classpath:spring/applicationContext-crate.xml"/>
     <import resource="classpath:spring/applicationContext-dataSource.xml"/>

@@ -1,6 +1,14 @@
 package controller;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import common.base.ChildrenDto;
+import common.base.TestConverterDto;
 import controller.bean.Box;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -10,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import controller.bean.User;
-import toy.test.mySql.dao.TestMySqlDataSourceDao;
 
-import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ValidationController
@@ -82,5 +93,31 @@ public class ValidationController {
     @ResponseBody
     public ApiResult requestBodyGet(@RequestBody Box box) {
         return ApiResult.succ(box.toString());
+    }
+
+    @RequestMapping(value = "testJsonConverter.json", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResult<ChildrenDto> testJsonConverter(@RequestBody ChildrenDto dto) {
+        System.out.println(dto);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
+        try {
+            String str = objectMapper.writeValueAsString(dto);
+            System.out.println(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ApiResult.succ(dto);
+    }
+
+    public static void main(String[] args) {
+        String img = "http://7xpjmx.com2.z0.glb.qiniucdn.com/o_1alr02vle17s51irh1sqa179b14nd.jpg";
+        List<String> imgs = Lists.newArrayList(img, img, img);
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(imgs));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
