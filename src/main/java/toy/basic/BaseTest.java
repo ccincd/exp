@@ -1,5 +1,7 @@
 package toy.basic;
 
+import java.text.DecimalFormat;
+
 /**
  * BaseTest
  *
@@ -26,4 +28,17 @@ public class BaseTest {
     /*
      * public final void hello() { System.out.println("hello"); }
      */
+
+    public static String formatPrice(float price) {
+        /*DecimalFormat decimalFormat = new DecimalFormat("＃.00");
+        return decimalFormat.format();*/
+
+        return String.format("%.2f", price / 10000);
+    }
+
+    public static void main(String[] args) {
+        float f = 10f;
+
+        System.out.println(formatPrice(f));
+    }
 }
