@@ -1,5 +1,7 @@
 package toy.json.ignore;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * Base
  *
@@ -9,6 +11,7 @@ public class BaseTest {
 
     private String name;
 
+    @JsonIgnore
     private Integer age;
 
     public Integer getAge() {

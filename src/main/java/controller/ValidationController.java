@@ -18,12 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import controller.bean.User;
+import toy.json.ignore.DerivedTest;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * ValidationController
@@ -109,6 +107,18 @@ public class ValidationController {
         }
 
         return ApiResult.succ(dto);
+    }
+
+    @RequestMapping(value = "testJsonIgnore.json", method = RequestMethod.GET)
+    @ResponseBody
+    public ApiResult testJsonIgnore() {
+        DerivedTest derivedTest = new DerivedTest();
+
+        derivedTest.setAge(3);
+        derivedTest.setAddress("hi");
+        derivedTest.setName("hi");
+
+        return ApiResult.succ(derivedTest);
     }
 
     public static void main(String[] args) {

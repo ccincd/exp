@@ -17,10 +17,8 @@ public class CaseListEntryDto implements Serializable {
         CaseListEntryDto entryDto = new CaseListEntryDto();
 
         entryDto.setAreaId(23L);
-        // entryDto.setCanForceDown(true);
         entryDto.setCanModify(false);
         entryDto.setCanQueryReason(false);
-        // entryDto.setCanRemove(true);
         entryDto.setCanUpdate(true);
         entryDto.setCanViewDetail(false);
         entryDto.setCaseName("hi");

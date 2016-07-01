@@ -1,5 +1,6 @@
 package toy.json.ignore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.io.IOException;
  */
 public class DerivedTest extends BaseTest {
 
+    @JsonIgnore
     private String address;
 
     public String getAddress() {
