@@ -9,6 +9,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +42,14 @@ public class JodaTimeDurationTest {
         return durationDays.getDays();
     }
 
+    public static int daysOfDuration(Date start, Date end) {
+        LocalDate localDateStart = new LocalDate(start);
+        LocalDate localDateEnd = new LocalDate(end);
+
+        Days durationDays = Days.daysBetween(localDateStart, localDateEnd);
+        return durationDays.getDays();
+    }
+
     public static void main(String[] args) {
         String begin = "2016-03-04";
         String end = "2016-03-15";
@@ -58,7 +67,7 @@ public class JodaTimeDurationTest {
 
         System.out.println(days);
 
-        // int duration = JodaTimeDurationTest.daysOfDuration(begin, end);
-        // System.out.println(duration);
+        LocalDate localDate = new LocalDate();
+        System.out.println(localDate.toString("yyyyMMdd"));
     }
 }
