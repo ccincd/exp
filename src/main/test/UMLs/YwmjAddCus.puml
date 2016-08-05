@@ -16,12 +16,12 @@ title 新增C端帐号
             else
                 --> [否] if "是否存在B端或者E端user_class" then
                     --> [否] "使用已有帐号密码（不更新）"
-                    --> "新增user_class以及customer"
+                    --> "不更新user\n新增user_class以及customer"
                     -->(*)
                 else
                     --> [是] if "用户确认开通新角色" then
                         --> [是] "使用已有帐号密码（不更新）"
-                        --> "新增user_class以及customer"
+                        --> "不更新user\n新增user_class以及customer"
                         -->(*)
                     else
                         --> [否] "取消新增"

@@ -15,10 +15,10 @@ else
 endif
 else
 --> [否] if "是否存在C端user_class\n\n\n" then
---> [否] "新增user_class以及merchant"
+--> [否] "更新user\n新增user_class以及merchant"
 -->(*)
 else
---> [是] "1、发送短信给B端管理员\n2、使用C端密码\n3、新增user_class以及merchant"
+--> [是] "1、发送短信给B端管理员\n2、使用C端密码\n3、更新user，新增user_class以及merchant"
 -->(*)
 endif
 endif
