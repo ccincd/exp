@@ -1,0 +1,37 @@
+@startuml
+title 新增C端帐号
+(*)  --> if "user是否存在" then
+        --> [是] if "user是否有效（未删除）" then
+            --> [否] "错误：账户已被禁用"
+            -->(*)
+        else
+            --> [是] if "user_class是否存在" then
+                --> [是] if "user_class是否有效" then
+                        --> [是] "错误：已存在该角色"
+                        -->(*)
+                    else
+                        --> [否] "错误：角色已被禁用"
+                        -->(*)
+                    endif
+            else
+                --> [否] if "是否存在B端或者E端user_class" then
+                    --> [否] "使用已有帐号密码（不更新）"
+                    --> "新增user_class以及customer"
+                    -->(*)
+                else
+                    --> [是] if "用户确认开通新角色" then
+                        --> [是] "使用已有帐号密码（不更新）"
+                        --> "新增user_class以及customer"
+                        -->(*)
+                    else
+                        --> [否] "取消新增"
+                        -->(*)
+                    endif
+                endif
+            endif
+        endif
+    else
+        --> [否] "新增user，user_class以及customer"
+        -->(*)
+    endif
+@enduml
