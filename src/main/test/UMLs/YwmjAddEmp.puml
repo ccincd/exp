@@ -1,0 +1,26 @@
+@startuml
+title 新增E端帐号
+(*)  --> if "user是否存在" then
+        --> [是] if "user是否有效（未删除）" then
+            --> [否] "错误：账户已被禁用"
+            -->(*)
+        else
+            --> [是] if "user_class是否存在" then
+                --> [是] if "user_class是否有效" then
+                        --> [是] "错误：已存在该角色"
+                        -->(*)
+                    else
+                        --> [否] "错误：角色已被禁用"
+                        -->(*)
+                    endif
+            else
+                --> [否] "1、使用已有帐号密码（不更新）\n2、发送短信通知"
+                --> "更新user\n新增user_class以及customer"
+                -->(*)
+            endif
+        endif
+    else
+        --> [否] "1、新增user，user_class以及employee\n2、使用默认密码，发送短信通知"
+        -->(*)
+    endif
+@enduml
