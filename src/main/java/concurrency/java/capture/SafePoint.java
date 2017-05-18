@@ -1,8 +1,5 @@
 package concurrency.java.capture;
 
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * 线程安全
  * private constructor capture idiom
@@ -10,10 +7,9 @@ import javax.annotation.concurrent.ThreadSafe;
  *
  * Created by cc on 16/3/20.
  */
-@ThreadSafe
 public class SafePoint {
 
-    @GuardedBy("this") private int x, y;
+    private int x, y;
 
     /**
      * 目的是为了解决复制构造函数线程安全的问题

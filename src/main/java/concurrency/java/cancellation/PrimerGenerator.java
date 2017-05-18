@@ -2,8 +2,6 @@ package concurrency.java.cancellation;
 
 import com.google.common.collect.Lists;
 
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -14,12 +12,10 @@ import java.util.concurrent.TimeUnit;
  *
  * Created by cc on 16/5/4.
  */
-@ThreadSafe
 public class PrimerGenerator implements Runnable {
 
     private volatile boolean isCancelled = false;
 
-    @GuardedBy("this")
     private final List<BigInteger> primes = Lists.newArrayList();
 
     @Override

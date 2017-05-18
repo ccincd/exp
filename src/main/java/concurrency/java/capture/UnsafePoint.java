@@ -1,7 +1,6 @@
 package concurrency.java.capture;
 
 import com.google.common.base.Objects;
-import javax.annotation.concurrent.NotThreadSafe;
 
 /**
  * 线程不安全
@@ -10,7 +9,6 @@ import javax.annotation.concurrent.NotThreadSafe;
  *
  * Created by cc on 16/3/20.
  */
-@NotThreadSafe
 public class UnsafePoint {
 
     private int x, y;

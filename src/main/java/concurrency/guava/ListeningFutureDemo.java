@@ -5,8 +5,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nullable;
-
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -80,7 +78,7 @@ public class ListeningFutureDemo {
          * 如果省略第三个输入参数,默认使用调用者的Executor
          */
         Futures.addCallback(future, new FutureCallback<String>() {
-            @Override public void onSuccess(@Nullable String s) {
+            @Override public void onSuccess(String s) {
                 System.out.println("Future callback -- success");
             }
 

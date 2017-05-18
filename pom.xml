@@ -42,9 +42,17 @@
         <jsch.version>0.1.53</jsch.version>
         <cglib.version>3.1</cglib.version>
         <jedis.version>2.1.0</jedis.version>
+        <rabbitmq.client.version>3.6.2</rabbitmq.client.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${rabbitmq.client.version}</version>
+        </dependency>
+
         <!-- data sources start -->
         <dependency>
             <groupId>commons-dbcp</groupId>
